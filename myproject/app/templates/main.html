@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>흔적 삭제 안내소</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            background-color: #f8f8ff;
+        }
+
+        /* 네비게이션 바 스타일 */
+        .navbar {
+            width: 60px;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 0;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            text-align: center;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #e0e0e0;
+            border-radius: 50%;
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        .navbar a:hover {
+            background-color: #c0c0c0;
+        }
+
+        /* 콘텐츠 영역 스타일 */
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .info-box {
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px solid #7c7cff;
+            border-radius: 8px;
+            font-size: 20px;
+            color: #7c7cff;
+        }
+
+        .footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- 네비게이션 바 -->
+    <div class="navbar">
+        <a href="#">➕</a>
+        <a href="#">⭐</a>
+        <a href="#">⛔</a>
+        <a href="#">❌</a>
+    </div>
+
+    <!-- 콘텐츠 영역 -->
+    <div class="content">
+        <h1>흔적 삭제 안내소</h1>
+        <div class="info-box">
+            흔적 삭제 안내소란?
+        </div>
+    </div>
+
+    <!-- 푸터 -->
+    <div class="footer">
+        <p>ChatGPT는 실수를 할 수 있습니다. 중요한 정보를 확인하세요.</p>
+    </div>
+</body>
+</html>
