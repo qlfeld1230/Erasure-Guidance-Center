@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crawled Data</title>
+</head>
+<body>
+    <h1>크롤링 결과</h1>
+    
+    <h2>페이지 제목: {{ page_title }}</h2>
+
+    <h3>링크 목록:</h3>
+    <ul>
+        {% for link in link_list %}
+            <li><a href="{{ link.url }}">{{ link.text }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
