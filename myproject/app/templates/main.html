@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>흔적 삭제 안내소</title>
+    {% comment %} <title>흔적 삭제 안내소</title> {% endcomment %}
+    <title>testestest</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <style>
@@ -69,6 +70,14 @@
             color: #7c7cff;
         }
 
+        .username-display {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
         .footer {
             background-color: #000;
             color: #fff;
@@ -88,6 +97,16 @@
         <a href="#">⛔</a>
         <a href="#">❌</a>
     </div>
+
+    <!-- 로그인한 사용자 이름 표시 -->
+    <div class="username-display">
+        {% if user.is_authenticated %}
+            안녕하세요, {{ user.username }}님!
+            <a href="/logout/">로그아웃</a>
+        {% else %}
+            <a href="/login/">로그인</a>
+        {% endif %}
+    </div>    
 
     <!-- 콘텐츠 영역 -->
     <div class="content">

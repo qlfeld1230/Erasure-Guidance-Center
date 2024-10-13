@@ -122,10 +122,20 @@
             <h2>로그인</h2>
             <form method="post">
                 {% csrf_token %}
-                <input type="text" name="username" placeholder="아이디" required>
-                <input type="password" name="password" placeholder="비밀번호" required>
+                {{ form.as_p }}  <!-- AuthenticationForm 폼 필드를 자동으로 출력 -->
                 <button type="submit">로그인</button>
             </form>
+
+            <!-- 폼 에러 메시지 출력 -->
+            {% if form.errors %}
+                <div class="form-errors">
+                    <ul>
+                        {% for field, errors in form.errors.items %}
+                            <li>{{ field }}: {{ errors|striptags }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
         </div>
     </div>
 
