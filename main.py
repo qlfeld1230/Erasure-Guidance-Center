@@ -2,7 +2,7 @@ import requests
 from urllib.parse import quote
 from bs4 import BeautifulSoup
 
-query = input('뭘 원하니? ')
+query = input('What keyword do you wanna search? ')
 url = f"https://www.google.com/search?q={query}"
    
 # HTTP 헤더 설정 (필수)
