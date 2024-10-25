@@ -8,7 +8,8 @@ def send_deletion_request(url, email, reason):
     :param email: 요청자의 이메일 주소
     :param reason: 삭제 요청 사유
     """
-     # 삭제 요청을 위한 URL (실제 웹사이트에 맞게 변경해야 합니다)
+     # 삭제 요청을 위한 URL (실제 웹사이트에 맞게 변경 필요,
+     # 만약 구글 고객지원 센터에서 요청을 받으면 그 URL로!
      deletion_url = "https://example.com/delete_request"
      
      #삭제 요청 데이터
