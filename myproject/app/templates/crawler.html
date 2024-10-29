@@ -1,20 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crawled Data</title>
+    <title>{{ page_title }}</title>
 </head>
 <body>
-    <h1>크롤링 결과</h1>
-    
-    <h2>페이지 제목: {{ page_title }}</h2>
+    <h1>검색 결과 - {{ search_query }}</h1>
 
-    <h3>링크 목록:</h3>
+    <!-- Naver 검색 결과 -->
+    <h2>Naver 검색 결과</h2>
     <ul>
-        {% for link in link_list %}
-            <li><a href="{{ link.url }}">{{ link.text }}</a></li>
-        {% endfor %}
+        {% if naver_link_list %}
+            {% for link in naver_link_list %}
+                <li><a href="{{ link.url }}" target="_blank">{{ link.text }}</a></li>
+            {% endfor %}
+        {% else %}
+            <li>네이버 검색 결과가 없습니다.</li>
+        {% endif %}
+    </ul>
+
+    <!-- Google 검색 결과 -->
+    <h2>Google 검색 결과</h2>
+    <ul>
+        {% if google_link_list %}
+            {% for link in google_link_list %}
+                <li><a href="{{ link.url }}" target="_blank">{{ link.text }}</a></li>
+            {% endfor %}
+        {% else %}
+            <li>구글 검색 결과가 없습니다.</li>
+        {% endif %}
     </ul>
 </body>
 </html>

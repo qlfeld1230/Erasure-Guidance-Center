@@ -2,29 +2,63 @@ import requests
 from bs4 import BeautifulSoup
 from django.shortcuts import render
 
-def crawler_view(request):
-    # 크롤링할 URL 설정
-    url = "https://google.com"  # 원하는 웹사이트로 변경 가능
+def integrated_crawler_view(request):
+    if request.method == "POST":
+        # 검색어 입력값 가져오기
+        search_query = request.POST.get('query')
+        search_terms = search_query.split()  # 띄어쓰기로 검색어 분리
 
-    # 웹 페이지 요청 보내기
-    response = requests.get(url)
-    
-    # 응답 코드 확인
-    if response.status_code != 200:
-        return render(request, 'error.html', {'message': '크롤링 실패: ' + str(response.status_code)})
+        # 네이버 크롤링
+        naver_url = f"https://search.naver.com/search.naver?query={requests.utils.quote(search_query)}"
+        naver_response = requests.get(naver_url)
+        naver_link_list = []
+        if naver_response.status_code == 200:
+            naver_soup = BeautifulSoup(naver_response.text, 'html.parser')
+            items = naver_soup.select('a.api_txt_lines')
+            for item in items:
+                link_text = item.get_text()
+                link_url = item.get('href')
+                if all(term in link_text for term in search_terms):
+                    naver_link_list.append({'text': link_text, 'url': link_url})
+                if len(naver_link_list) >= 10:
+                    break
 
-    # HTML 파싱
-    soup = BeautifulSoup(response.text, 'html.parser')
+        # 구글 크롤링
+        google_url = f"https://www.google.com/search?q={requests.utils.quote(search_query)}"
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+        }
+        google_response = requests.get(google_url, headers=headers)
+        google_link_list = []
+        if google_response.status_code == 200:
+            google_soup = BeautifulSoup(google_response.text, 'html.parser')
+            results = google_soup.select('div.MjjYud')  # <div class="MjjYud"> 요소 선택
 
-    # 제목 추출
-    page_title = soup.title.string
+            for result in results:
+                # 제목과 링크 추출
+                title_tag = result.select_one('h3')
+                title = title_tag.get_text() if title_tag else ""
+                link_tag = title_tag.find_parent('a') if title_tag else None
+                link = link_tag['href'] if link_tag else '링크 없음'
 
-    # 모든 링크 추출
-    links = soup.find_all('a')
-    link_list = [{'text': link.get_text(), 'url': link.get('href')} for link in links if link.get('href')]
+                # 설명 텍스트 추출
+                description_tag = result.select_one('div.VwiC3b')
+                description = description_tag.get_text() if description_tag else ""
 
-    # 결과를 템플릿으로 전달
-    return render(request, 'crawler.html', {
-        'page_title': page_title,
-        'link_list': link_list,
-    })
+                # 검색어 포함 여부 확인
+                if all(term in (title + description) for term in search_terms):
+                    google_link_list.append({'text': title, 'url': link, 'description': description})
+
+                if len(google_link_list) >= 10:
+                    break
+
+        # 결과를 템플릿으로 전달
+        return render(request, 'crawler.html', {
+            'page_title': '통합 검색 결과',
+            'naver_link_list': naver_link_list,
+            'google_link_list': google_link_list,
+            'search_query': search_query,
+        })
+
+    # GET 요청일 경우 기본 페이지 렌더링
+    return render(request, 'crawler.html')
