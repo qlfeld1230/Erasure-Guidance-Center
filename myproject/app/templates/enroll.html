@@ -123,11 +123,11 @@
             <h2>회원가입</h2>
             <form method="post">
                 {% csrf_token %}
-                <!-- 에러 메시지 출력 -->
                 {% if form.non_field_errors %}
                     <div class="error-message">{{ form.non_field_errors }}</div>
                 {% endif %}
-                <!-- 폼 필드 렌더링 -->
+
+                <!-- 기본 필드 -->
                 <div>
                     {{ form.username.label_tag }}
                     {{ form.username }}
@@ -141,6 +141,22 @@
                     {{ form.email }}
                     {% if form.email.errors %}
                         <div class="error-message">{{ form.email.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div>
+                    {{ form.first_name.label_tag }}
+                    {{ form.first_name }}
+                    {% if form.first_name.errors %}
+                        <div class="error-message">{{ form.first_name.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div>
+                    {{ form.last_name.label_tag }}
+                    {{ form.last_name }}
+                    {% if form.last_name.errors %}
+                        <div class="error-message">{{ form.last_name.errors }}</div>
                     {% endif %}
                 </div>
 
@@ -160,14 +176,48 @@
                     {% endif %}
                 </div>
 
+                <!-- 추가 필드 -->
+                <div>
+                    {{ form.age.label_tag }}
+                    {{ form.age }}
+                    {% if form.age.errors %}
+                        <div class="error-message">{{ form.age.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div>
+                    {{ form.address.label_tag }}
+                    {{ form.address }}
+                    {% if form.address.errors %}
+                        <div class="error-message">{{ form.address.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div>
+                    {{ form.school.label_tag }}
+                    {{ form.school }}
+                    {% if form.school.errors %}
+                        <div class="error-message">{{ form.school.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div>
+                    {{ form.resident_number.label_tag }}
+                    {{ form.resident_number }}
+                    {% if form.resident_number.errors %}
+                        <div class="error-message">{{ form.resident_number.errors }}</div>
+                    {% endif %}
+                </div>
+
                 <button type="submit">회원가입</button>
             </form>
         </div>
     </div>
 
-    <!-- 푸터 -->
+    {% comment %} <!-- 푸터 -->
     <div class="footer">
         <p>ChatGPT는 실수를 할 수 있습니다. 중요한 정보를 확인하세요.</p>
-    </div>
+    </div> {% endcomment %}
+
 </body>
 </html>
