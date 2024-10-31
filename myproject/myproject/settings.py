@@ -6,6 +6,9 @@ DEBUG = True
 ALLOWED_HOSTS = []
 LOGIN_REDIRECT_URL = '/'
 
+# auth_user 를 커스텀함
+AUTH_USER_MODEL = 'app.CustomUser'
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
