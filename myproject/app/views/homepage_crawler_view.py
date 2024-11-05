@@ -3,13 +3,13 @@ from bs4 import BeautifulSoup
 from django.shortcuts import render
 from concurrent.futures import ThreadPoolExecutor       # 스레드 사용
 
-''' 크롤러 뷰 개요
+''' 개요
 - 네이버 크롤러
 - 구글 크롤러
 - 다음 크롤러 
-- 중점 사항
+- 바뀌어야 할 중점?
     - 스레드 사용할 건가
-    - 페이지 넘어가는 것들 1 ~ 99 등 동적 크롤링이 필요한가
+    - 페이지 넘어가는 것들, 즉 1 ~ 99 등 동적 크롤링이 필요한가
 '''
 
 def fetch_naver_links(search_query, search_terms):

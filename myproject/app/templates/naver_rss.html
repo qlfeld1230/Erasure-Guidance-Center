@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네이버 블로그 RSS 피드 가져오기</title>
+</head>
+<body>
+    <h1>네이버 블로그 RSS 피드 가져오기</h1>
+    <form action="{% url 'fetch_naver_rss' %}" method="GET">
+        <label for="blog_id">네이버 블로그 아이디:</label>
+        <input type="text" id="blog_id" name="blog_id" placeholder="your_blog_id" required>
+        <button type="submit">RSS 피드 가져오기</button>
+    </form>
+</body>
+</html>
