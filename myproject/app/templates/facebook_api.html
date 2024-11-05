@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Facebook Posts</title>
+</head>
+<body>
+    <h1>Facebook Posts</h1>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <strong>작성일:</strong> {{ post.created_time }}<br>
+                <strong>내용:</strong> {{ post.message }}<br>
+                <strong>Post ID:</strong> {{ post.id }}
+            </li>
+            <hr>
+        {% empty %}
+            <li>게시물이 없습니다.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
