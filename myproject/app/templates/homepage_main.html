@@ -16,7 +16,6 @@
             background-color: #f8f8ff;
         }
 
-        /* 네비게이션 바 스타일 */
         .navbar {
             width: 60px;
             background-color: #f0f0f0;
@@ -45,7 +44,6 @@
             background-color: #c0c0c0;
         }
 
-        /* 콘텐츠 영역 스타일 */
         .content {
             flex-grow: 1;
             padding: 20px;
@@ -69,6 +67,14 @@
             color: #7c7cff;
         }
 
+        .username-display {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
         .footer {
             background-color: #000;
             color: #fff;
@@ -78,10 +84,33 @@
             bottom: 0;
             width: 100%;
         }
+
+        .form-box {
+            margin-top: 20px;
+        }
+
+        .form-box input {
+            margin: 10px 0;
+            padding: 8px;
+            font-size: 16px;
+            width: 300px;
+        }
+
+        .form-box button {
+            padding: 10px 20px;
+            background-color: #7c7cff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-box button:hover {
+            background-color: #5a5ad1;
+        }
     </style>
 </head>
 <body>
-    <!-- 네비게이션 바 -->
     <div class="navbar">
         <a href="#">➕</a>
         <a href="#">⭐</a>
@@ -89,15 +118,31 @@
         <a href="#">❌</a>
     </div>
 
-    <!-- 콘텐츠 영역 -->
+    <div class="username-display">
+        {% if user.is_authenticated %}
+            안녕하세요, {{ user.username }}님!
+            <a href="/logout/">로그아웃</a>
+        {% else %}
+            <a href="/login/">로그인</a>
+        {% endif %}
+    </div>    
+
     <div class="content">
         <h1>흔적 삭제 안내소</h1>
         <div class="info-box">
             흔적 삭제 안내소란?
         </div>
+
+        <!-- 통합 검색창 -->
+        <div class="form-box">
+            <form method="post" action="/crawler/">
+                {% csrf_token %}
+                <input type="text" name="query" placeholder="검색어를 입력하세요" required><br>
+                <button type="submit">검색</button>
+            </form>
+        </div>
     </div>
 
-    <!-- 푸터 -->
     <div class="footer">
         <p>ChatGPT는 실수를 할 수 있습니다. 중요한 정보를 확인하세요.</p>
     </div>
