@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views import View
-from ..forms import CustomUserCreationForm
+from ..forms import CustomUserEnrollForm
 
-''' 페이지 뷰 개요
+''' 개요
 - EnrollView 는 회원 가입에 사용하는 컨트롤러(뷰) 입니다.
 - MainView 는 메인 페이지에 관련된 뷰를 만들겁니다.
-- 
 '''
 
 ''' 메인 뷰
@@ -14,7 +13,7 @@ from ..forms import CustomUserCreationForm
 '''
 class MainView(View):
     def get(self, request):
-        return render(request, 'main.html')
+        return render(request, 'homepage_main.html')
 
 ''' 회원 가입
 - get 및 form 으로 페이지 가져오고
@@ -23,15 +22,15 @@ class MainView(View):
 '''
 class EnrollView(View):
     def get(self, request):
-        form = CustomUserCreationForm()
-        return render(request, 'enroll.html', {'form': form})
+        form = CustomUserEnrollForm()
+        return render(request, 'homepage_enroll.html', {'form': form})
 
     def post(self, request):
-        form = CustomUserCreationForm(request.POST)
+        form = CustomUserEnrollForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, '회원가입이 완료되었습니다.')
             return redirect('login')
         else:
             messages.error(request, '회원가입 중 오류가 발생했습니다. 다시 시도해주세요.')
-            return render(request, 'enroll.html', {'form': form})
+            return render(request, 'homepage_enroll.html', {'form': form})

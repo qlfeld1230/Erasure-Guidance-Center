@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+''' 개요
+- 커스텀 유저 테이블
+'''
 
 ''' 커스텀 회원 가입
 - 장고는 기본으로 DB에 대한 model을 제공을 해줍니다.
