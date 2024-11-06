@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.urls import path
 from app.views.page_view import MainView, EnrollView
-# 수정됨
-from app.views.crawler_view_sunho import *
+from app.views.crawler_view import *
+
 from django.contrib.auth.views import LogoutView, LoginView
 
 urlpatterns = [

@@ -1,81 +1,84 @@
 import requests
 from bs4 import BeautifulSoup
 from django.shortcuts import render
-from concurrent.futures import ThreadPoolExecutor       # 스레드 사용
+import random
 
-''' 크롤러 뷰 개요
-- 네이버 크롤러
-- 구글 크롤러
-- 다음 크롤러 
-- 중점 사항
-    - 스레드 사용할 건가
-    - 페이지 넘어가는 것들 1 ~ 99 등 동적 크롤링이 필요한가
+from .crawler_view_naver import naver_crawler
+from .crawler_view_google import google_crawler
+from .crawler_view_daum import daum_crawler
+
+'''
+IP 차단 회피를 방지하기 위한
+agent 로테이션
 '''
 
 
-def fetch_naver_links(search_query, search_terms):
-    naver_url = f"https://search.naver.com/search.naver?query={requests.utils.quote(search_query)}"
-    naver_response = requests.get(naver_url)
-    naver_link_list = []
-    if naver_response.status_code == 200:
-        naver_soup = BeautifulSoup(naver_response.text, 'html.parser')
-        items = naver_soup.select('a.api_txt_lines')
-        for item in items:
-            link_text = item.get_text()
-            link_url = item.get('href')
-            if all(term in link_text for term in search_terms):
-                naver_link_list.append({'text': link_text, 'url': link_url})
-            if len(naver_link_list) >= 10:
-                break
-    return naver_link_list
+def get_random_user_agent():
+    user_agents = [
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0",
+        "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Edge/91.0.864.59",
+    ]
+
+    return random.choice(user_agents)
 
 
-def fetch_google_links(search_query, search_terms):
-    google_url = f"https://www.google.com/search?q={requests.utils.quote(search_query)}"
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+'''
+user data 공간
+'''
+
+
+# app/views/user_data_module.py
+def user_data():
+    return {
+        "get_name": lambda: "박성호",
+        "get_nickname": lambda: "곰두리",
+        "get_affiliation": lambda: "강원대학교",
+        "get_email": lambda: "qlfeld1230@naver.com"
     }
-    google_response = requests.get(google_url, headers=headers)
-    google_link_list = []
-    if google_response.status_code == 200:
-        google_soup = BeautifulSoup(google_response.text, 'html.parser')
-        results = google_soup.select('div.MjjYud')
-        for result in results:
-            title_tag = result.select_one('h3')
-            title = title_tag.get_text() if title_tag else ""
-            link_tag = title_tag.find_parent('a') if title_tag else None
-            link = link_tag['href'] if link_tag else '링크 없음'
-            description_tag = result.select_one('div.VwiC3b')
-            description = description_tag.get_text() if description_tag else ""
-            if all(term in (title + description) for term in search_terms):
-                google_link_list.append(
-                    {'text': title, 'url': link, 'description': description})
-            if len(google_link_list) >= 10:
-                break
-    return google_link_list
 
 
 def integrated_crawler_view(request):
     if request.method == "POST":
+        # 검색어 입력값 가져오기
         search_query = request.POST.get('query')
-        search_terms = search_query.split()
 
-        # ThreadPoolExecutor를 사용하여 Naver와 Google 크롤링을 병렬로 수행
-        with ThreadPoolExecutor() as executor:
-            naver_future = executor.submit(
-                fetch_naver_links, search_query, search_terms)
-            google_future = executor.submit(
-                fetch_google_links, search_query, search_terms)
+        # 크롤링 차단 우회를 위한 헤더 설정
+        headers = {
+            "User-Agent": get_random_user_agent()
+        }
 
-            # 결과 기다리기
-            naver_link_list = naver_future.result()
-            google_link_list = google_future.result()
+        # user_data 생성
+        user = user_data()
+
+        # 검색결과 수 제한
+        search_limit = 20
+
+        # 네이버 크롤러 호출
+        naver_link_list, naver_result_count = naver_crawler(
+            user, headers, search_limit)
+
+        # 구글 크롤러 호출
+        google_link_list, google_result_count = google_crawler(
+            user, headers, search_limit)
+
+        # 다음 크롤러 호출
+        daum_link_list, daum_result_count = daum_crawler(
+            user, headers, search_limit
+        )
 
         # 결과를 템플릿으로 전달
         return render(request, 'crawler.html', {
             'page_title': '통합 검색 결과',
             'naver_link_list': naver_link_list,
             'google_link_list': google_link_list,
+            'daum_link_list': daum_link_list,
+            'naver_result_count': naver_result_count,
+            'google_result_count': google_result_count,
+            'daum_result_count': daum_result_count,
             'search_query': search_query,
         })
 
