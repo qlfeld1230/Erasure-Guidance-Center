@@ -1,3 +1,5 @@
+#로그인이랑 회원가입 툴 생성하는 브런치입니다.
+
 # 가상환경 active 하신 다음 requriements.txt 에 있는 버전 맞춰서 pip install 하신 다음에 실행하셔야 할 겁니다.
 
 
