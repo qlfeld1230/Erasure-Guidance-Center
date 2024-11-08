@@ -1,0 +1,160 @@
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #333;
+}
+
+.container {
+    background-color: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+h1 {
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: 700;
+}
+
+.form-box {
+    margin-bottom: 40px;
+}
+
+.main-search {
+    padding: 15px 40px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+}
+
+.main-search:hover {
+    background-color: #0056b3;
+}
+
+.platforms {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.platform-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.platform-item {
+    flex: 1;
+}
+
+.icon-button,
+.text-button {
+    width: 100%;
+    height: 60px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 500;
+}
+
+.icon-button {
+    width: 100%;
+    height: 60px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    /* 아이콘 배경 설정 */
+    background-size: contain;
+    /* 아이콘이 버튼 안에 맞게 표시 */
+    background-repeat: no-repeat;
+    background-position: left;
+    /* 아이콘을 왼쪽에 배치 */
+
+    /* 텍스트 색상 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+
+    /* 텍스트 스타일 */
+    color: black;
+    /* 텍스트 색상을 검정으로 설정 */
+    font-weight: bold;
+}
+
+.icon-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.icon-button span {
+    margin-top: 30px;
+}
+
+.text-button {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+.facebook {
+    background-color: #4267B2;
+    /* Darker blue */
+    color: #FFFFFF;
+    /* White text */
+}
+
+.instagram {
+    background-color: #C13584;
+    /* Darker pink */
+    color: #FFFFFF;
+    /* White text */
+}
+
+.x {
+    background-color: #1da1f2;
+}
+
+.natepan {
+    background-color: #ffcc00;
+    color: #333;
+}
+
+.icon-button:hover,
+.text-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 500px) {
+    .container {
+        padding: 20px;
+    }
+
+    .platform-row {
+        flex-direction: column;
+    }
+}
