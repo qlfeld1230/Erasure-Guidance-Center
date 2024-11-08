@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    background-color: #f8f8ff;
+}
+
+.navbar {
+    width: 60px;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar a {
+    text-align: center;
+    margin: 15px 0;
+    padding: 10px;
+    background-color: #e0e0e0;
+    border-radius: 50%;
+    text-decoration: none;
+    color: black;
+    display: block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.navbar a:hover {
+    background-color: #c0c0c0;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.info-box {
+    margin-top: 20px;
+    padding: 20px;
+    border: 2px solid #7c7cff;
+    border-radius: 8px;
+    font-size: 20px;
+    color: #7c7cff;
+}
+
+.username-display {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 18px;
+    color: #333;
+}
+
+.footer {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.form-box {
+    margin-top: 20px;
+}
+
+.form-box input {
+    margin: 10px 0;
+    padding: 8px;
+    font-size: 16px;
+    width: 300px;
+}
+
+.form-box button {
+    padding: 10px 20px;
+    background-color: #7c7cff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-box button:hover {
+    background-color: #5a5ad1;
+}
