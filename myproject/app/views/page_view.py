@@ -3,10 +3,20 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from django.views import View
 
+
+class IndexView(View):
+    def get(self, request):
+        return render(request, 'index.html')
+
+
 class MainView(View):
     def get(self, request):
         return render(request, 'main.html')
-    
+
+    def post(self, request):
+        return render(request, 'main.html')
+
+
 class EnrollView(View):
     def get(self, request):
         form = UserCreationForm()
