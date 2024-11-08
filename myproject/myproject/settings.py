@@ -105,6 +105,18 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+# settings.py
+
+# Static 파일 URL
+STATIC_URL = '/static/'
+
+# Static 파일 디렉토리
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # BASE_DIR은 프로젝트의 루트 디렉토리를 가리킵니다.
+]
+# settings.py
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
