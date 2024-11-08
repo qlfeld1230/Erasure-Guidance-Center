@@ -3,14 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>네이버 블로그 RSS 피드 가져오기</title>
+    <title>네이버 검색 및 RSS 피드</title>
 </head>
 <body>
-    <h1>네이버 블로그 RSS 피드 가져오기</h1>
-    <form action="{% url 'fetch_naver_rss' %}" method="GET">
-        <label for="blog_id">네이버 블로그 아이디:</label>
-        <input type="text" id="blog_id" name="blog_id" placeholder="your_blog_id" required>
-        <button type="submit">RSS 피드 가져오기</button>
+    <h1>네이버 검색 및 RSS 피드</h1>
+
+    <!-- 검색 폼 -->
+    <form action="{% url 'naver:fetch_naver_rss' %}" method="GET">
+        <label for="blog_id">블로그 ID:</label>
+        <input type="text" id="blog_id" name="blog_id" placeholder="블로그 ID 입력" required>
+        <button type="submit">검색</button>
     </form>
+
+    <!-- 오류 메시지 표시 -->
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    <!-- 검색 결과 표시 -->
+    {% if posts %}
+        <h2>{{ blog_id }} 블로그의 RSS 피드</h2>
+        <ul>
+            {% for post in posts %}
+                <li>
+                    <h2>{{ post.title }}</h2>
+                    <p><a href="{{ post.link }}" target="_blank">Link</a></p>
+                    <p>{{ post.description }}</p>
+                    <p>Published Date: {{ post.pubDate }}</p>
+                    <hr>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>검색 결과가 없습니다.</p>
+    {% endif %}
 </body>
 </html>
