@@ -4,78 +4,58 @@ import requests
 
 
 class daum:
+    ''' 다음 API 통합 검색 '''
     
-    ''' 다음 API 검색
-    '''
-    def web_search(request):
+    @staticmethod
+    def daum_search(request):
         query = request.GET.get('query', '')
-        posts = []
+        web_posts, blog_posts, cafe_posts = [], [], []
         error = None
 
         if query:
             rest_api_key = settings.KAKAO_REST_API_KEY
             headers = {"Authorization": f"KakaoAK {rest_api_key}"}
-            url = "https://dapi.kakao.com/v2/search/web"
+            base_url = "https://dapi.kakao.com/v2/search/"
             params = {"query": query, "sort": "recency", "page": 1, "size": 10}
+            
+            try:
+                # 웹 검색 요청
+                web_response = requests.get(f"{base_url}web", headers=headers, params=params)
+                if web_response.status_code == 200:
+                    web_data = web_response.json()
+                    web_posts = web_data.get("documents", [])
+                else:
+                    error = "웹 검색 API 요청 실패."
 
-            response = requests.get(url, headers=headers, params=params)
+                # 블로그 검색 요청
+                blog_response = requests.get(f"{base_url}blog", headers=headers, params=params)
+                if blog_response.status_code == 200:
+                    blog_data = blog_response.json()
+                    blog_posts = blog_data.get("documents", [])
+                else:
+                    error = "블로그 검색 API 요청 실패."
 
-            if response.status_code == 200:
-                data = response.json()
-                posts = data.get("documents", [])
-            else:
-                error = "API 요청 실패. 다시 시도해주세요."
+                # 카페 검색 요청
+                cafe_response = requests.get(f"{base_url}cafe", headers=headers, params=params)
+                if cafe_response.status_code == 200:
+                    cafe_data = cafe_response.json()
+                    cafe_posts = cafe_data.get("documents", [])
+                else:
+                    error = "카페 검색 API 요청 실패."
+            
+            except requests.RequestException as e:
+                error = f"API 요청 오류: {e}"
 
-        return render(request, 'daum_api.html', {"posts": posts, "error": error})
-    
-    ''' 다음 API 블로그 검색
-    '''
-    def blog_search(request):
-        query = request.GET.get('query', '')
-        posts = []
-        error = None
+        context = {
+            "web_posts": web_posts,
+            "blog_posts": blog_posts,
+            "cafe_posts": cafe_posts,
+            "error": error
+        }
+        return render(request, 'daum_api.html', context)
 
-        if query:
-            rest_api_key = settings.KAKAO_REST_API_KEY
-            headers = {"Authorization": f"KakaoAK {rest_api_key}"}
-            url = "https://dapi.kakao.com/v2/search/blog"
-            params = {"query": query, "sort": "recency", "page": 1, "size": 10}
-
-            response = requests.get(url, headers=headers, params=params)
-
-            if response.status_code == 200:
-                data = response.json()
-                posts = data.get("documents", [])
-            else:
-                error = "API 요청 실패. 다시 시도해주세요."
-
-        return render(request, 'daum_api.html', {"posts": posts, "error": error})
-    
-    ''' 다음 API 카페 검색
-    '''
-    def cafe_search(request):
-        query = request.GET.get('query', '')
-        posts = []
-        error = None
-
-        if query:
-            rest_api_key = settings.KAKAO_REST_API_KEY
-            headers = {"Authorization": f"KakaoAK {rest_api_key}"}
-            url = "https://dapi.kakao.com/v2/search/cafe"
-            params = {"query": query, "sort": "recency", "page": 1, "size": 10}
-
-            response = requests.get(url, headers=headers, params=params)
-
-            if response.status_code == 200:
-                data = response.json()
-                posts = data.get("documents", [])
-            else:
-                error = "API 요청 실패. 다시 시도해주세요."
-
-        return render(request, 'daum_api.html', {"posts": posts, "error": error})
-    
     
 class Kakao:
     
-    def empty():
+    def temp():
         return

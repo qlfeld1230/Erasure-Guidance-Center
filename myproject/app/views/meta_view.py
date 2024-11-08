@@ -77,8 +77,8 @@ class Facebook:
     '''
     @staticmethod
     def login(request):
-        client_id = settings.META_APP_ID
-        redirect_uri = settings.META_REDIRECT_URI
+        client_id = settings.FACEBOOK_APP_ID
+        redirect_uri = settings.FACEBOOK_REDIRECT_URI
         scope = "user_posts"
         return redirect(f"https://www.facebook.com/v21.0/dialog/oauth?client_id={client_id}&redirect_uri={redirect_uri}&scope={scope}")
     
@@ -88,9 +88,9 @@ class Facebook:
     @staticmethod
     def callback(request):
         code = request.GET.get("code")
-        client_id = settings.META_APP_ID
-        client_secret = settings.META_APP_SECRET
-        redirect_uri = settings.META_REDIRECT_URI
+        client_id = settings.FACEBOOK_APP_ID
+        client_secret = settings.FACEBOOK_APP_SECRET
+        redirect_uri = settings.FACEBOOK_REDIRECT_URI
 
         token_url = f"https://graph.facebook.com/v21.0/oauth/access_token?client_id={client_id}&redirect_uri={redirect_uri}&client_secret={client_secret}&code={code}"
         token_response = requests.get(token_url)
