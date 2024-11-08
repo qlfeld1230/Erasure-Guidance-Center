@@ -3,20 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daum 블로그 검색</title>
+    <title>Daum 통합 검색</title>
 </head>
 <body>
-    <h1>Daum 블로그 검색</h1>
-    <form action="{% url 'fetch_daum_blog' %}" method="GET">
+    <h1>Daum 통합 검색</h1>
+    <form action="{% url 'daum_search' %}" method="GET">
         <label for="query">검색어:</label>
         <input type="text" id="query" name="query" placeholder="검색어를 입력하세요" required>
         <button type="submit">검색</button>
     </form>
 
-    {% if posts %}
-        <h2>검색 결과</h2>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+
+    {% if web_posts %}
+        <h2>웹 검색 결과</h2>
         <ul>
-            {% for post in posts %}
+            {% for post in web_posts %}
+                <li>
+                    <h3>{{ post.title|safe }}</h3>
+                    <p>{{ post.contents }}</p>
+                    <p><a href="{{ post.url }}" target="_blank">웹 문서로 이동</a></p>
+                    <p>게시 날짜: {{ post.datetime }}</p>
+                    <hr>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if blog_posts %}
+        <h2>블로그 검색 결과</h2>
+        <ul>
+            {% for post in blog_posts %}
                 <li>
                     <h3>{{ post.title|safe }}</h3>
                     <p>{{ post.contents }}</p>
@@ -27,8 +46,22 @@
                 </li>
             {% endfor %}
         </ul>
-    {% elif error %}
-        <p>{{ error }}</p>
+    {% endif %}
+
+    {% if cafe_posts %}
+        <h2>카페 검색 결과</h2>
+        <ul>
+            {% for post in cafe_posts %}
+                <li>
+                    <h3>{{ post.title|safe }}</h3>
+                    <p>{{ post.contents }}</p>
+                    <p><a href="{{ post.url }}" target="_blank">카페 글로 이동</a></p>
+                    <p>카페 이름: {{ post.cafename }}</p>
+                    <p>게시 날짜: {{ post.datetime }}</p>
+                    <hr>
+                </li>
+            {% endfor %}
+        </ul>
     {% endif %}
 </body>
 </html>

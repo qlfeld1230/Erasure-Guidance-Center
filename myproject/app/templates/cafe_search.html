@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네이버 카페글 검색 결과</title>
+</head>
+<body>
+    <h1>네이버 카페글 검색</h1>
+    <form action="{% url 'cafe_search' %}" method="get">
+        <input type="text" name="query" placeholder="검색어를 입력하세요" value="{{ request.GET.query }}">
+        <button type="submit">검색</button>
+    </form>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    {% if results %}
+        <h2>검색 결과</h2>
+        <ul>
+            {% for item in results %}
+                <li>
+                    <h3><a href="{{ item.link }}" target="_blank">{{ item.title|safe }}</a></h3>
+                    <p>{{ item.description|safe }}</p>
+                    <p><strong>카페 이름:</strong> {{ item.cafename }}</p>
+                    <p><strong>카페 URL:</strong> <a href="{{ item.cafeurl }}" target="_blank">{{ item.cafeurl }}</a></p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>검색 결과가 없습니다.</p>
+    {% endif %}
+</body>
+</html>

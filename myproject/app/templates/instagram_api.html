@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Instagram Posts</title>
+</head>
+<body>
+    <h1>Instagram Posts</h1>
+    {% if posts %}
+        <ul>
+            {% for post in posts %}
+                <li>
+                    <strong>Caption:</strong> {{ post.caption }}<br>
+                    <strong>Media URL:</strong> <a href="{{ post.media_url }}">{{ post.media_url }}</a><br>
+                    <strong>Timestamp:</strong> {{ post.timestamp }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No posts available.</p>
+    {% endif %}
+</body>
+</html>
