@@ -7,6 +7,8 @@ from app.views.naver_rss_view import *
 from django.contrib.auth.views import LogoutView, LoginView
 from app.views.daum_api_view import fetch_daum_blog
 from django.shortcuts import render
+from app.forms import CustomUserEnrollForm
+from app.models import CustomUser
 
 ''' 개요
 - 홈

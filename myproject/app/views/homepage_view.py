@@ -4,6 +4,13 @@ from django.views import View
 from django.urls import reverse_lazy
 from ..forms import CustomUserEnrollForm
 from ..models import CustomUser
+import os
+import django
+import sys
+
+sys.path.append("C:/Users/sej68/Documents/GitHub/Erasure-Guidance-Center/myproject")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myproject.settings")
+django.setup()
 
 ''' 개요
 - EnrollView 는 회원 가입에 사용하는 컨트롤러(뷰) 입니다.
