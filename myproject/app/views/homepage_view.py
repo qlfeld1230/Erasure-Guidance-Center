@@ -5,6 +5,8 @@ from django.views import View
 from django.urls import reverse_lazy
 from ..forms import CustomUserEnrollForm
 from ..models import CustomUser
+from django.contrib.auth.views import LogoutView
+from django.contrib.auth import logout
 import os
 import django
 import sys
@@ -66,3 +68,12 @@ class EnrollView(View):
             print(form.errors)  # 오류 메시지 출력
             messages.error(request, "회원가입 중 오류가 발생했습니다.")
             return render(request, self.template_name, {'form': form, 'errors': form.errors})
+
+class CustomLogoutView(LogoutView):
+    def post(self, request, *args, **kwargs):
+        logout(request)  # 로그아웃 처리
+        return redirect('main')  # 로그아웃 후 로그인 페이지로 리다이렉트
+     
+    # GET 요청은 처리하지 않도록 명시적으로 설정
+    def get(self, request, *args, **kwargs):
+        return redirect('main')  # GET 요청이 오면 로그인 페이지로 리다이렉트

@@ -4,12 +4,13 @@ from app.views.homepage_view import MainView, EnrollView
 from app.views.homepage_crawler_view import *
 from app.views.facebook_api_view import *
 from app.views.naver_rss_view import *
-from django.contrib.auth.views import LogoutView, LoginView
+from django.contrib.auth.views import LoginView
 from app.views.daum_api_view import fetch_daum_blog
 from django.shortcuts import render
 from app.forms import CustomUserEnrollForm
 from app.models import CustomUser
-
+from django.urls import reverse_lazy
+from app.views.homepage_view import CustomLogoutView
 ''' 개요
 - 홈
 - 페이스북
@@ -29,7 +30,7 @@ urlpatterns = [
     
     # 회원 가입 및 로그인 관련 및 홈 크롤러
     path('homepage/login/', LoginView.as_view(template_name='homepage_login.html'), name='homepage_login'), 
-    path('homepage/logout/', LogoutView.as_view(next_page='homepage_login'), name = 'homepage_logout'), 
+    path('homepage/logout/', CustomLogoutView.as_view(), name = 'homepage_logout'), 
     path('homepage/enroll/', EnrollView.as_view(), name = 'homepage_enroll'), 
     path('homepage/crawler/', integrated_crawler_view),
     
