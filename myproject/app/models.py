@@ -29,5 +29,10 @@ class CustomUser(AbstractUser):
     school = models.CharField(max_length=100, blank=True)         # 학교 필드
     resident_number = models.CharField(max_length=15, blank=True) # 주민번호
     
+    def __str__(self):
+        return self.username #User object 대신 나타낼 문자
+    
+    class Meta:
+        db_table = 'test_user'
 
 

@@ -137,7 +137,7 @@
     <div class="username-display">
         {% if user.is_authenticated %}
             안녕하세요, {{ user.username }}님!
-            <a href="/logout/">로그아웃</a>
+            <a href="/homepage/logout/">로그아웃</a>
         {% else %}
             <a href="/homepage/login/">로그인</a>
             <a href="/homepage/enroll/" class="register-btn">회원가입</a>

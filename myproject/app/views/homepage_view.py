@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth import authenticate, login
 from django.views import View
 from django.urls import reverse_lazy
 from ..forms import CustomUserEnrollForm
@@ -33,20 +34,35 @@ class EnrollView(View):
     model = CustomUser
     template_name = 'homepage_enroll.html'
     success_url = reverse_lazy('homepage_login') # 성공 시 login 페이지로 리다이렉션
-    
+   
+    def dispatch(self, request, *args, **kwargs):
+        if request.method == "POST":
+            return self.post(request)
+        return self.get(request)
+
     def get(self, request):
-        # GET 요청 시 폼을 빈 상태로 전달
         form = CustomUserEnrollForm()
         return render(request, self.template_name, {'form': form})
-
+        
     def post(self, request):
-        # POST 요청 시 폼에 사용자 입력을 처리
         form = CustomUserEnrollForm(request.POST)
         if form.is_valid():
-            user = form.save()  # 유효하면 데이터베이스에 저장
-            messages.success(request, '회원가입이 완료되었습니다.')
-            return redirect(self.success_url)  # 성공 시 로그인 페이지로 리디렉션
+            # 회원가입 저장
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+
+            # 사용자 인증 후 로그인
+            user = authenticate(username=username, password1=raw_password)
+            if user is not None:
+                login(request, user)
+                messages.success(request, "회원가입과 로그인 성공!")
+                return redirect('main')  # 메인 페이지로 리다이렉트
+            else:
+                messages.error(request, "사용자 인증에 실패했습니다.")
+                return redirect(self.success_url)
         else:
-            # 폼에 오류가 있으면 다시 폼을 렌더링하면서 오류 메시지를 표시
-            messages.error(request, '회원가입 중 오류가 발생했습니다. 다시 시도해주세요.')
-            return render(request, self.template_name, {'form': form})
+            # 폼 오류 출력
+            print(form.errors)  # 오류 메시지 출력
+            messages.error(request, "회원가입 중 오류가 발생했습니다.")
+            return render(request, self.template_name, {'form': form, 'errors': form.errors})

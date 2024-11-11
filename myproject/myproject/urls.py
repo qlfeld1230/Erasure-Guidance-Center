@@ -23,10 +23,13 @@ urlpatterns = [
 
     # 메인 페이지 (앱 진입점)
     path('', MainView.as_view(), name = 'main'),
-
+    
+     # Django Admin 페이지 URL
+    path('admin/', admin.site.urls),
+    
     # 회원 가입 및 로그인 관련 및 홈 크롤러
     path('homepage/login/', LoginView.as_view(template_name='homepage_login.html'), name='homepage_login'), 
-    path('homepage/logout/', LogoutView.as_view(next_page='homepage_/login/')), 
+    path('homepage/logout/', LogoutView.as_view(next_page='homepage_login'), name = 'homepage_logout'), 
     path('homepage/enroll/', EnrollView.as_view(), name = 'homepage_enroll'), 
     path('homepage/crawler/', integrated_crawler_view),
     

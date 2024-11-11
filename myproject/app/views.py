@@ -8,3 +8,4 @@ def login(request):
 
 def enroll(request):
     return render(request, 'enroll.html')
+

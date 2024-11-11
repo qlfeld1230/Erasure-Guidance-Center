@@ -20,7 +20,7 @@ class CustomUserEnrollForm(UserCreationForm):
     #이메일 유효성 검사
     def clean_email(self):
         email = self.cleaned_data.get('email')
-        if CustomUser.objects.filter(email=email).exits():
+        if CustomUser.objects.filter(email=email).exists():
             raise forms.ValidationError("이미 존재하는 이메일입니다.")
         return email
     
@@ -30,18 +30,3 @@ class CustomUserEnrollForm(UserCreationForm):
         if not terms:
             raise forms.ValidationError("약관에 동의하셔야 합니다.")
         return terms
-    
-    #회원가입 폼 작성
-    class EnrollForm(forms.ModelForm):
-        password = forms.CharField(widget=forms.PasswordInput)
-
-        class Meta:
-            model = CustomUser
-            fields = ['username', 'email', 'password', 'first_name', 'last_name', 'age', 'address']
-        
-        def save(self, commit=True):
-            user = super().save(commit=False)
-            user.set_password(self.cleaned_data['password'])  # 비밀번호 암호화
-            if commit:
-                user.save()
-            return user
