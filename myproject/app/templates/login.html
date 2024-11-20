@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -107,6 +108,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- 네비게이션 바 -->
     <div class="navbar">
@@ -122,26 +124,23 @@
             <h2>로그인</h2>
             <form method="post">
                 {% csrf_token %}
-                {{ form.as_p }}  <!-- AuthenticationForm 폼 필드를 자동으로 출력 -->
+                {{ form.as_p }} <!-- AuthenticationForm 폼 필드를 자동으로 출력 -->
                 <button type="submit">로그인</button>
             </form>
 
             <!-- 폼 에러 메시지 출력 -->
             {% if form.errors %}
-                <div class="form-errors">
-                    <ul>
-                        {% for field, errors in form.errors.items %}
-                            <li>{{ field }}: {{ errors|striptags }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
+            <div class="form-errors">
+                <ul>
+                    {% for field, errors in form.errors.items %}
+                    <li>{{ field }}: {{ errors|striptags }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
             {% endif %}
         </div>
     </div>
-    
-    <!-- 푸터 -->
-    <div class="footer">
-        <p>ChatGPT는 실수를 할 수 있습니다. 중요한 정보를 확인하세요.</p>
-    </div>
+
 </body>
+
 </html>
