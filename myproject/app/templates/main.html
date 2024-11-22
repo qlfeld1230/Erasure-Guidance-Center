@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내 개인정보 찾기</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main_style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1>내 개인정보 찾기</h1>
+        <div class="form-box">
+            <form method="post" action="/crawler/">
+                {% csrf_token %}
+                <button type="submit" class="main-search">통합 검색</button>
+            </form>
+        </div>
+
+        <div class="platforms">
+            <div class="platform-row">
+                <div class="platform-item">
+                    <form method="post" action="/cafe/">
+                        {% csrf_token %}
+                        <button type="submit" class="icon-button"
+                            style="background-image: url('{% static 'img/cafe_icon.png' %}');">
+                            <span>카페</span>
+                        </button>
+                    </form>
+                </div>
+                <div class="platform-item">
+                    <form method="post" action="/blog/">
+                        {% csrf_token %}
+                        <button type="submit" class="icon-button"
+                            style="background-image: url('{% static 'img/blog_icon.png' %}');">
+                            <span>블로그</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <!-- 페이스북 버튼 -->
+            <div class="platform-item">
+                <form method="post" action="/facebook/">
+                    {% csrf_token %}
+                    <button type="submit" class="icon-button"
+                        style="background-image: url('{% static 'img/facebook_icon.png' %}');">
+                        <span>페이스북</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- 인스타그램 버튼 -->
+            <div class="platform-item">
+                <form method="post" action="/instagram/">
+                    {% csrf_token %}
+                    <button type="submit" class="icon-button"
+                        style="background-image: url('{% static 'img/instagram_icon.png' %}');">
+                        <span>인스타그램</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- X 버튼 -->
+            <div class="platform-item">
+                <form method="post" action="/youtube/">
+                    {% csrf_token %}
+                    <button type="submit" class="icon-button"
+                        style="background-image: url('{% static 'img/youtube_icon.png' %}');">
+                        <span>유튜브 댓글</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- 네이트 판 버튼 -->
+            <div class="platform-item">
+                <form method="post" action="/natepan/">
+                    {% csrf_token %}
+                    <button type="submit" class="icon-button"
+                        style="background-image: url('{% static 'img/nate_icon.png' %}');">
+                        <span>네이트 판</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

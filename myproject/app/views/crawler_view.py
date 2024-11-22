@@ -34,10 +34,10 @@ user data 공간
 # app/views/user_data_module.py
 def user_data():
     return {
-        "get_name": lambda: "박성호",
-        "get_nickname": lambda: "곰두리",
+        "get_name": lambda: "test",
+        "get_nickname": lambda: "nickname",
         "get_affiliation": lambda: "강원대학교",
-        "get_email": lambda: "qlfeld1230@naver.com"
+        "get_email": lambda: "empty@email.com"
     }
 
 

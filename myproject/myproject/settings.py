@@ -1,5 +1,5 @@
-from pathlib import Path
 import os
+from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -7,7 +7,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'app', 'resources', 'static'),
 ]
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 SECRET_KEY = 'django-insecure-(w(l$&o#*bwi=7sd1^+4q&1%%t#je+cov9)2)l4jg7v1$$+&&1'
 DEBUG = True
@@ -15,12 +15,12 @@ ALLOWED_HOSTS = [
     '*'
 ]
 LOGIN_REDIRECT_URL = '/'
+AUTH_USER_MODEL = 'app.CustomUser'  # auth_user 를 커스텀함
 
-AUTH_USER_MODEL = 'app.CustomUser'      # auth_user 를 커스텀함
 
 ''' Facebook API 사용
 '''
-BASE_REDIRECT_URI = 'https://5b98-210-110-128-79.ngrok-free.app'
+BASE_REDIRECT_URI = 'https://274c-210-110-128-79.ngrok-free.app'
 FACEBOOK_APP_ID = '1132533228242987'
 FACEBOOK_APP_SECRET = '7d2284caffcb3722744e3b1f972f7d16'
 FACEBOOK_REDIRECT_URI = f"{BASE_REDIRECT_URI}/facebook/callback/"
@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
     'app',
 ]
 
@@ -67,7 +67,7 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -104,23 +104,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# setting.py 
-
-# Static 파일 URL
-STATIC_URL = '/static/'
-
-# Static 파일 디렉토리
-STATICFILES_DIRS = [
-    BASE_DIR / "static",  # BASE_DIR은 프로젝트의 루트 디렉토리를 가리킵니다.
-]
-# settings.py
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
