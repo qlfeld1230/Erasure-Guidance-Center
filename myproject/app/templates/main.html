@@ -33,7 +33,7 @@
                     </form>
                 </div>
                 <div class="platform-item">
-                    <form method="post" action="/blog/">
+                    <form method="post" action="naver_rss/">
                         {% csrf_token %}
                         <button type="submit" class="icon-button"
                             style="background-image: url('{% static 'img/blog_icon.png' %}');">
@@ -44,7 +44,7 @@
             </div>
             <!-- 페이스북 버튼 -->
             <div class="platform-item">
-                <form method="post" action="/facebook/">
+                <form method="post" action="facebook/login/">
                     {% csrf_token %}
                     <button type="submit" class="icon-button"
                         style="background-image: url('{% static 'img/facebook_icon.png' %}');">
