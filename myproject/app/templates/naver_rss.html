@@ -9,7 +9,7 @@
     <h1>네이버 검색 및 RSS 피드</h1>
 
     <!-- 검색 폼 -->
-    <form action="{% url 'naver:fetch_naver_rss' %}" method="GET">
+    <form action="{% url 'naver_rss' %}" method="GET">
         <label for="blog_id">블로그 ID:</label>
         <input type="text" id="blog_id" name="blog_id" placeholder="블로그 ID 입력" required>
         <button type="submit">검색</button>
