@@ -120,21 +120,33 @@
     <div class="content">
         <div class="login-container">
             <h2>로그인</h2>
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}  <!-- AuthenticationForm 폼 필드를 자동으로 출력 -->
-                <button type="submit">로그인</button>
-            </form>
-
-            <!-- 폼 에러 메시지 출력 -->
-            {% if form.errors %}
-                <div class="form-errors">
-                    <ul>
-                        {% for field, errors in form.errors.items %}
-                            <li>{{ field }}: {{ errors|striptags }}</li>
-                        {% endfor %}
-                    </ul>
+            
+            {% if user.is_authenticated %}
+                <div>{{ user.username }} 님으로 로그인 성공</div>
+                <div>
+                    <p>{{ user.username }}님 안녕하세요!</p>
+                    <form action="{% url 'homepage_logout' %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">로그아웃</button>
+                    </form>
                 </div>
+            {% else %}
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" name="account" value="login">로그인</button>
+                </form>
+
+                <!-- 폼 에러 메시지 출력 -->
+                {% if form.errors %}
+                    <div class="form-errors">
+                        <ul>
+                            {% for field, errors in form.errors.items %}
+                                <li>{{ field }}: {{ errors|striptags }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
             {% endif %}
         </div>
     </div>

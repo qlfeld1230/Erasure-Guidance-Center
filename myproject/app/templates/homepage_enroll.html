@@ -121,7 +121,15 @@
     <div class="content">
         <div class="enroll-container">
             <h2>회원가입</h2>
-            <form method="post">
+            {% if messages %}
+            <div class="message-container">
+                {% for message in messages %}
+                    <div class="message {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <form method="post" action="{% url 'homepage_enroll' %}">
                 {% csrf_token %}
                 {% if form.non_field_errors %}
                     <div class="error-message">{{ form.non_field_errors }}</div>
@@ -206,6 +214,14 @@
                     {{ form.resident_number }}
                     {% if form.resident_number.errors %}
                         <div class="error-message">{{ form.resident_number.errors }}</div>
+                    {% endif %}
+                </div>
+                <!--약관동의체크박스(임시)-->                
+                <div>
+                    {{ form.terms.label_tag }}
+                    {{ form.terms }}
+                    {% if form.terms.errors %}
+                        <div class="error-message">{{ form.terms.errors }}</div>
                     {% endif %}
                 </div>
 

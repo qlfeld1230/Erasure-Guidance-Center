@@ -1,15 +1,22 @@
 from pathlib import Path
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'app', 'resources', 'static'),
+]
+
+
 SECRET_KEY = 'django-insecure-(w(l$&o#*bwi=7sd1^+4q&1%%t#je+cov9)2)l4jg7v1$$+&&1'
 DEBUG = True
 ALLOWED_HOSTS = [
     '*'
 ]
 LOGIN_REDIRECT_URL = '/'
-AUTH_USER_MODEL = 'app.CustomUser' # auth_user 를 커스텀함
 
-
+AUTH_USER_MODEL = 'app.CustomUser'      # auth_user 를 커스텀함
 
 ''' Facebook API 사용
 '''
@@ -32,8 +39,6 @@ KAKAO_REST_API_KEY = '3e593285350a48ef8153776257682e76'
 '''
 NAVER_CLIENT_ID = 'f_kYLczHBJBSV3ElFbci'
 NAVER_CLIENT_SECRET = 'ovYtXAG3vf'
-
-
 
 
 INSTALLED_APPS = [
@@ -98,6 +103,19 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+# setting.py 
+
+# Static 파일 URL
+STATIC_URL = '/static/'
+
+# Static 파일 디렉토리
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # BASE_DIR은 프로젝트의 루트 디렉토리를 가리킵니다.
+]
+# settings.py
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
