@@ -12,16 +12,16 @@ from django.contrib.auth.models import AbstractUser
 '''
 class CustomUser(AbstractUser):
     # 기본 필드 명시
-    # id = models.AutoField(primary_key=True)                     # 유저의 id 입니다. 번호입니다. primary_key 1부터 시작해요
-    # username = models.CharField(max_length=150, unique=True)    # 이게 실질적인 id 입니다. 
-    # password = models.CharField(max_length=128)                 # 비밀번호
-    # first_name = models.CharField(max_length=150, blank=True)   # 이름
-    # last_name = models.CharField(max_length=150, blank=True)    # 성
-    # email = models.EmailField(blank=True)                       # 이메일
-    # is_staff = models.BooleanField(default=False)               # 서비스의 운영자인지, 소비자인지
-    # is_active = models.BooleanField(default=True)               # 지금 로그인해있는지, 로그아웃인지
-    # date_joined = models.DateTimeField(auto_now_add=True)       # 가입 날짜
-    # last_login = models.DateTimeField(null=True, blank=True)    # 최근 로그인 날짜
+    id = models.AutoField(primary_key=True)                     # 유저의 id 입니다. 번호입니다. primary_key 1부터 시작해요
+    username = models.CharField(max_length=150, unique=True)    # 이게 실질적인 id 입니다. 
+    password = models.CharField(max_length=128)                 # 비밀번호
+    first_name = models.CharField(max_length=150, blank=True)   # 이름
+    last_name = models.CharField(max_length=150, blank=True)    # 성
+    email = models.EmailField(blank=True)                       # 이메일
+    is_staff = models.BooleanField(default=False)               # 서비스의 운영자인지, 소비자인지
+    is_active = models.BooleanField(default=True)               # 지금 로그인해있는지, 로그아웃인지
+    date_joined = models.DateTimeField(auto_now_add=True)       # 가입 날짜
+    last_login = models.DateTimeField(null=True, blank=True)    # 최근 로그인 날짜
 
     # 커스텀 필드
     age = models.PositiveIntegerField(null=True, blank=True)      # 나이
@@ -29,5 +29,10 @@ class CustomUser(AbstractUser):
     school = models.CharField(max_length=100, blank=True)         # 학교 필드
     resident_number = models.CharField(max_length=15, blank=True) # 주민번호
     
+    def __str__(self):
+        return self.username #User object 대신 나타낼 문자
+    
+    class Meta:
+        db_table = 'test_user'
 
 

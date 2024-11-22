@@ -1,5 +1,5 @@
-import os
 from pathlib import Path
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -8,19 +8,19 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'app', 'resources', 'static'),
 ]
 
+
 SECRET_KEY = 'django-insecure-(w(l$&o#*bwi=7sd1^+4q&1%%t#je+cov9)2)l4jg7v1$$+&&1'
 DEBUG = True
 ALLOWED_HOSTS = [
     '*'
 ]
 LOGIN_REDIRECT_URL = '/'
-AUTH_USER_MODEL = 'app.CustomUser' # auth_user 를 커스텀함
 
-
+AUTH_USER_MODEL = 'app.CustomUser'      # auth_user 를 커스텀함
 
 ''' Facebook API 사용
 '''
-BASE_REDIRECT_URI = 'https://274c-210-110-128-79.ngrok-free.app'
+BASE_REDIRECT_URI = 'https://5b98-210-110-128-79.ngrok-free.app'
 FACEBOOK_APP_ID = '1132533228242987'
 FACEBOOK_APP_SECRET = '7d2284caffcb3722744e3b1f972f7d16'
 FACEBOOK_REDIRECT_URI = f"{BASE_REDIRECT_URI}/facebook/callback/"
@@ -41,8 +41,6 @@ NAVER_CLIENT_ID = 'f_kYLczHBJBSV3ElFbci'
 NAVER_CLIENT_SECRET = 'ovYtXAG3vf'
 
 
-
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -50,7 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    
     'app',
 ]
 
@@ -105,7 +103,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-# settings.py
+
+# setting.py 
 
 # Static 파일 URL
 STATIC_URL = '/static/'
@@ -123,4 +122,5 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

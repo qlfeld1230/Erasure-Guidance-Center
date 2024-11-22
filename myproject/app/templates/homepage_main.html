@@ -1,92 +1,171 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>내 개인정보 찾기</title>
+    <title>흔적 삭제 안내소</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/main_style.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
-        rel="stylesheet">
-</head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            background-color: #f8f8ff;
+        }
 
+        .navbar {
+            width: 60px;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px 0;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            text-align: center;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #e0e0e0;
+            border-radius: 50%;
+            text-decoration: none;
+            color: black;
+            display: block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+        }
+
+        .navbar a:hover {
+            background-color: #c0c0c0;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .info-box {
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px solid #7c7cff;
+            border-radius: 8px;
+            font-size: 20px;
+            color: #7c7cff;
+        }
+
+        .username-display {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .form-box {
+            margin-top: 20px;
+        }
+
+        .form-box input {
+            margin: 10px 0;
+            padding: 8px;
+            font-size: 16px;
+            width: 300px;
+        }
+
+        .form-box button {
+            padding: 10px 20px;
+            background-color: #7c7cff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-box button:hover {
+            background-color: #5a5ad1;
+        }
+
+        /* 회원가입 버튼 스타일 */
+        .register-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #7c7cff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .register-btn:hover {
+            background-color: #5a5ad1;
+        }
+    </style>
+</head>
 <body>
-    <div class="container">
-        <h1>내 개인정보 찾기</h1>
+    <div class="navbar">
+        <a href="#">➕</a>
+        <a href="#">⭐</a>
+        <a href="#">⛔</a>
+        <a href="#">❌</a>
+    </div>
+
+    <div class="username-display">
+        {% if user.is_authenticated %}
+            안녕하세요, {{ user.username }}님!
+            <!-- 로그아웃 버튼을 폼으로 변경 -->
+            <form action="{% url 'homepage_logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">로그아웃</button>
+            </form>
+        {% else %}
+            <a href="/homepage/login/">로그인</a>
+            <a href="/homepage/enroll/" class="register-btn">회원가입</a>
+        {% endif %}
+    </div>
+
+    <div class="content">
+        <h1>흔적 삭제 안내소</h1>
+        <div class="info-box">
+            흔적 삭제 안내소란?
+        </div>
+
+        <!-- 통합 검색창 -->
         <div class="form-box">
             <form method="post" action="/crawler/">
                 {% csrf_token %}
-                <button type="submit" class="main-search">통합 검색</button>
+                <input type="text" name="query" placeholder="검색어를 입력하세요" required><br>
+                <button type="submit">검색</button>
             </form>
         </div>
+    </div>
 
-        <div class="platforms">
-            <div class="platform-row">
-                <div class="platform-item">
-                    <form method="post" action="/cafe/">
-                        {% csrf_token %}
-                        <button type="submit" class="icon-button"
-                            style="background-image: url('{% static 'img/cafe_icon.png' %}');">
-                            <span>카페</span>
-                        </button>
-                    </form>
-                </div>
-                <div class="platform-item">
-                    <form method="post" action="/blog/">
-                        {% csrf_token %}
-                        <button type="submit" class="icon-button"
-                            style="background-image: url('{% static 'img/blog_icon.png' %}');">
-                            <span>블로그</span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <!-- 페이스북 버튼 -->
-            <div class="platform-item">
-                <form method="post" action="/facebook/">
-                    {% csrf_token %}
-                    <button type="submit" class="icon-button"
-                        style="background-image: url('{% static 'img/facebook_icon.png' %}');">
-                        <span>페이스북</span>
-                    </button>
-                </form>
-            </div>
-
-            <!-- 인스타그램 버튼 -->
-            <div class="platform-item">
-                <form method="post" action="/instagram/">
-                    {% csrf_token %}
-                    <button type="submit" class="icon-button"
-                        style="background-image: url('{% static 'img/instagram_icon.png' %}');">
-                        <span>인스타그램</span>
-                    </button>
-                </form>
-            </div>
-
-            <!-- X 버튼 -->
-            <div class="platform-item">
-                <form method="post" action="/youtube/">
-                    {% csrf_token %}
-                    <button type="submit" class="icon-button"
-                        style="background-image: url('{% static 'img/youtube_icon.png' %}');">
-                        <span>유튜브 댓글</span>
-                    </button>
-                </form>
-            </div>
-
-            <!-- 네이트 판 버튼 -->
-            <div class="platform-item">
-                <form method="post" action="/natepan/">
-                    {% csrf_token %}
-                    <button type="submit" class="icon-button"
-                        style="background-image: url('{% static 'img/nate_icon.png' %}');">
-                        <span>네이트 판</span>
-                    </button>
-                </form>
-            </div>
-        </div>
+    <div class="footer">
+        <p>ChatGPT는 실수를 할 수 있습니다. 중요한 정보를 확인하세요.</p>
     </div>
 </body>
-
 </html>
