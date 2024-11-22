@@ -20,7 +20,7 @@ AUTH_USER_MODEL = 'app.CustomUser'      # auth_user 를 커스텀함
 
 ''' Facebook API 사용
 '''
-BASE_REDIRECT_URI = 'https://274c-210-110-128-79.ngrok-free.app'
+BASE_REDIRECT_URI = 'https://5b98-210-110-128-79.ngrok-free.app'
 FACEBOOK_APP_ID = '1132533228242987'
 FACEBOOK_APP_SECRET = '7d2284caffcb3722744e3b1f972f7d16'
 FACEBOOK_REDIRECT_URI = f"{BASE_REDIRECT_URI}/facebook/callback/"

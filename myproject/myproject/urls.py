@@ -7,6 +7,8 @@ from app.views.youtube_view import *
 from app.views.meta_view import *
 from app.views.naver_view import *
 from app.views.kakao_view import *
+from app.views.homepage_view import *
+
 
 ''' 개요
 - 홈
@@ -16,16 +18,23 @@ from app.views.kakao_view import *
 '''
 
 urlpatterns = [
-    # Admin 페이지
-    # path('admin/', admin.site.urls), 
-
+    
     # 메인 페이지 (앱 진입점)
-    path('', MainView.as_view()),
+    path('', MainView.as_view(), name = 'main'),
 
+     # Django Admin 페이지 URL
+    path('admin/', admin.site.urls),
+    
     # 회원 가입 및 로그인 관련 및 홈 크롤러
-    path('homepage/login/', LoginView.as_view(template_name='homepage_login.html', success_url='/'), name='homepage_login'), 
-    path('homepage/logout/', LogoutView.as_view(next_page='homepage_login/')), 
-    path('homepage/enroll/', EnrollView.as_view()), 
+    path('homepage/login/', LoginView.as_view(template_name='homepage_login.html'), name='homepage_login'), 
+    path('homepage/logout/', CustomLogoutView.as_view(), name = 'homepage_logout'), 
+    path('homepage/enroll/', EnrollView.as_view(), name = 'homepage_enroll'), 
+    path('homepage/crawler/', integrated_crawler_view),
+
+    # # 회원 가입 및 로그인 관련 및 홈 크롤러
+    # path('homepage/login/', LoginView.as_view(template_name='homepage_login.html', success_url='/'), name='homepage_login'), 
+    # path('homepage/logout/', LogoutView.as_view(next_page='homepage_login/')), 
+    # path('homepage/enroll/', EnrollView.as_view()), 
     
     # 페이스북 관련 API 및 콜백
     path('facebook/login/', Facebook.login, name='facebook_login'),
@@ -50,6 +59,7 @@ urlpatterns = [
     
     # 유튜브 댓글
     path('youtube/', redirect_to_google_activity, name='redirect_to_google_activity'),
+    
     
     
 ]
