@@ -50,9 +50,9 @@ urlpatterns = [
     path('main/facebook/posts/', Facebook.posts, name='facebook_posts'),
 
     # 인스타그램 관련 API 및 콜백
-    path('instagram/login/', Instagram.login, name='instagram_login'),
-    path('instagram/callback/', Instagram.callback, name='instagram_callback'),
-    path('instagram/posts/', Instagram.posts, name='instagram_posts'),
+    path('main/instagram/login/', Instagram.login, name='instagram_login'),
+    path('main/instagram/callback/', Instagram.callback, name='instagram_callback'),
+    path('main/instagram/posts/', Instagram.posts, name='instagram_posts'),
 
     # 네이버
     # path('naver/', Naver.web_search, name='naver_search'),
