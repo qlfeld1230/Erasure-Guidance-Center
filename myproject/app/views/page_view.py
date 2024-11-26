@@ -23,7 +23,7 @@ class MainView(View):
 class EnrollView(View):
     template_name = 'enroll.html'
     form_class = CustomUserEnrollForm
-    success_url = reverse_lazy('homepage_login')
+    success_url = reverse_lazy('login')
 
     def get(self, request):
         form = self.form_class()  # CustomUserEnrollForm을 사용

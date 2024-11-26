@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 
+from django.urls import reverse_lazy
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 STATIC_URL = '/static/'
@@ -15,6 +17,7 @@ ALLOWED_HOSTS = [
     '*'
 ]
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 AUTH_USER_MODEL = 'app.CustomUser'  # auth_user 를 커스텀함
 
 
