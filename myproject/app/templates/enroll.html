@@ -129,12 +129,9 @@
             </div>
             {% endif %}
 
-            <form method="post" action="{% url 'homepage_enroll' %}">
+            <form method="post" action="{% url 'enroll' %}">
                 {% csrf_token %}
-                {% if form.non_field_errors %}
-                    <div class="error-message">{{ form.non_field_errors }}</div>
-                {% endif %}
-
+                
                 <!-- 기본 필드 -->
                 <div>
                     {{ form.username.label_tag }}
@@ -216,7 +213,7 @@
                         <div class="error-message">{{ form.resident_number.errors }}</div>
                     {% endif %}
                 </div>
-                <!--약관동의체크박스(임시)-->                
+
                 <div>
                     {{ form.terms.label_tag }}
                     {{ form.terms }}
@@ -234,6 +231,5 @@
     <div class="footer">
         <p>ChatGPT는 실수를 할 수 있습니다. 중요한 정보를 확인하세요.</p>
     </div> {% endcomment %}
-
 </body>
 </html>

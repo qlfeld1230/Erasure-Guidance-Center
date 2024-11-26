@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>흔적 삭제 안내소</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/index_style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="#" class="nav-icon">➕</a>
+        <a href="#" class="nav-icon">⭐</a>
+        <a href="#" class="nav-icon">⛔</a>
+        <a href="#" class="nav-icon">❌</a>
+    </nav>
+
+    <main class="main-content">
+        <header class="user-header">
+            {% if user.is_authenticated %}
+            <span>안녕하세요, {{ user.username }}님!</span>
+            <a href="/logout/" class="btn btn-logout">로그아웃</a>
+            {% else %}
+            <a href="/login/" class="btn btn-login">로그인</a>
+            <a href="/enroll/" class="btn btn-enroll">회원가입</a>
+            {% endif %}
+        </header>
+
+        <section class="hero">
+            <h1>흔적 삭제 안내소</h1>
+            <div class="info-box">
+                흔적 삭제 안내소란?
+            </div>
+            <form method="post" action="/main/" class="start-form">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-start">시작하기</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <!-- Footer content removed -->
+    </footer>
+</body>
+
+</html>

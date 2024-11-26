@@ -58,6 +58,7 @@ body {
     justify-content: flex-end;
     align-items: center;
     padding: 10px 20px;
+    gap: 10px;
 }
 
 .hero {
@@ -97,7 +98,8 @@ h1 {
 }
 
 .btn-login,
-.btn-logout {
+.btn-logout,
+.btn-enroll {
     background-color: var(--primary-color);
     color: #fff;
     text-decoration: none;
