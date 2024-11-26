@@ -216,13 +216,24 @@
                     {% endif %}
                 </div>
 
-                <div>
-                    {{ form.terms.label_tag }}
+                <div style="display: flex; align-items: center;">
+                    <!-- 개인정보 수집 및 이용 동의 링크 수정 -->
+                    <a href="#" onclick="openConsentWindow(event)" style="margin-right: 10px; white-space: nowrap;">개인정보 수집 및 이용 동의</a>
+                    
+                    <!-- Terms 체크박스 폼 -->
                     {{ form.terms }}
                     {% if form.terms.errors %}
                         <div class="error-message">{{ form.terms.errors }}</div>
                     {% endif %}
                 </div>
+                <script>
+                    // 팝업 창을 열어 동의 내용을 보여주는 함수
+                    function openConsentWindow(event) {
+                        event.preventDefault();  // 기본 링크 동작 방지
+                        const consentWindow = window.open("{% url 'consent' %}", "Consent", "width=800,height=600");
+                        consentWindow.focus();  // 팝업 창을 포커스
+                    }
+                </script>
 
                 <button type="submit">회원가입</button>
             </form>

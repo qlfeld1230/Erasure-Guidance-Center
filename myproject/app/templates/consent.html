@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개인정보 수집 및 이용 동의</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .consent-container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px 30px;
+            max-width: 500px;
+            width: 100%;
+        }
+        .consent-container h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #2a66c5;
+        }
+        .consent-content {
+            border: 1px solid #b0c4ff;
+            border-radius: 4px;
+            padding: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+            font-size: 14px;
+            color: #333333;
+            line-height: 1.5;
+            background-color: #f8faff;
+            margin-bottom: 20px;
+        }
+        .checkbox-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .checkbox-group label {
+            font-size: 16px;
+            color: #2a66c5;
+        }
+        .checkbox-group input[type="radio"] {
+            margin-left: 10px;
+        }
+        .submit-button {
+            background-color: #2a66c5;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        .submit-button:hover {
+            background-color: #234a9e;
+        }
+    </style>
+</head>
+<body>
+    <div class="consent-container">
+        <h2>개인정보 수집 및 이용 동의</h2>
+        
+        <div class="consent-content">
+            <p><strong>1. 개인정보 수집 항목</strong></p>
+            <p>- 이름, 아이디, 이메일 주소, 휴대전화번호, 사용자 활동 내역(삭제 요청 기록 등)</p>
+            
+            <p><strong>2. 개인정보 수집 및 이용 목적</strong></p>
+            <p>- 사용자 요청에 따른 개인정보 삭제 요청 처리<br>
+               - 서비스 이용 내역 관리 및 ‘잊혀질 권리’ 보호 시스템 운영<br>
+               - 개인정보 보호 관련 정보 제공 및 상담</p>
+            
+            <p><strong>3. 개인정보의 보유 및 이용 기간</strong></p>
+            <p>- 사용자의 개인정보는 수집 및 이용 목적이 달성된 후에도 관련 법령에 따라 최대 2년간 보유됩니다.<br>
+                - 개인정보가 불필요하게 되었거나 보유 기간이 만료되었을 경우 지체 없이 해당 개인정보를 안전하게 파기합니다.</p>
+            
+            <p>※ 개인정보의 수집 및 이용에 대한 동의는 필수이며, 동의하지 않을 경우 본 서비스 이용에 제한이 있을 수 있습니다.</p>
+        </div>
+
+        <div class="checkbox-group">
+            <label>
+                <input type="radio" name="consent" value="agree" required> 동의함
+            </label>
+            <label>
+                <input type="radio" name="consent" value="disagree"> 동의하지 않음
+            </label>
+        </div>
+        
+        <button class="submit-button" onclick="submitConsent()">확인</button>
+    </div>
+
+    <script>
+        function submitConsent() {
+            const consent = document.querySelector('input[name="consent"]:checked');
+            if (!consent) {
+                alert("개인정보 수집 및 이용에 동의 여부를 선택해주세요.");
+                return;
+            }
+    
+            if (consent.value === "agree") {
+                alert("동의해주셔서 감사합니다. 다음 단계로 이동합니다.");
+    
+                // 부모 페이지의 'terms' 체크박스를 자동으로 체크
+                if (window.opener) {
+                    // 부모 페이지의 'terms' 체크박스를 정확히 선택
+                    const termsCheckbox = window.opener.document.querySelector('input[name="terms"]');
+                    if (termsCheckbox) {
+                        termsCheckbox.checked = true;  // 체크박스를 체크함
+                    } else {
+                        console.error("부모 페이지에서 terms 체크박스를 찾을 수 없습니다.");
+                    }
+                }
+    
+                // 팝업 창을 닫고 부모 페이지로 돌아가기
+                window.close();  // 팝업 창을 닫고 부모 페이지로 돌아감
+            } else {
+                alert("개인정보 수집 및 이용에 동의하지 않아 회원가입이 제한됩니다.");
+            }
+        }
+    </script>
+</body>
+</html>
