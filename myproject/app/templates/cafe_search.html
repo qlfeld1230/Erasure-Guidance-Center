@@ -1,35 +1,156 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>네이버 카페글 검색 결과</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            text-align: center;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        .search-form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-form input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .search-form button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .result-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .result-item {
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #eaeaea;
+            border-radius: 10px;
+            background-color: #f8faff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .result-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+        }
+
+        .result-item h3 {
+            margin: 0 0 10px;
+            font-size: 1.2em;
+        }
+
+        .result-item h3 a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .result-item h3 a:hover {
+            text-decoration: underline;
+        }
+
+        .result-item p {
+            margin: 5px 0;
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        .result-item p strong {
+            color: #333;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>네이버 카페글 검색</h1>
-    <form action="{% url 'cafe_search' %}" method="get">
-        <input type="text" name="query" placeholder="검색어를 입력하세요" value="{{ request.GET.query }}">
-        <button type="submit">검색</button>
-    </form>
+    <div class="container">
+        <h1>네이버 카페글 검색</h1>
+        <form class="search-form" action="{% url 'cafe_search' %}" method="get">
+            <input type="text" name="query" placeholder="검색어를 입력하세요" value="{{ request.GET.query }}">
+            <button type="submit">검색</button>
+        </form>
 
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
+        {% if error %}
+        <p class="error-message">{{ error }}</p>
+        {% endif %}
 
-    {% if results %}
+        {% if results %}
         <h2>검색 결과</h2>
-        <ul>
+        <ul class="result-list">
             {% for item in results %}
-                <li>
-                    <h3><a href="{{ item.link }}" target="_blank">{{ item.title|safe }}</a></h3>
-                    <p>{{ item.description|safe }}</p>
-                    <p><strong>카페 이름:</strong> {{ item.cafename }}</p>
-                    <p><strong>카페 URL:</strong> <a href="{{ item.cafeurl }}" target="_blank">{{ item.cafeurl }}</a></p>
-                </li>
+            <li class="result-item">
+                <h3><a href="{{ item.link }}" target="_blank">{{ item.title|safe }}</a></h3>
+                <p>{{ item.description|safe }}</p>
+                <p><strong>카페 이름:</strong> {{ item.cafename }}</p>
+                <p><strong>카페 URL:</strong> <a href="{{ item.cafeurl }}" target="_blank">{{ item.cafeurl }}</a></p>
+            </li>
             {% endfor %}
         </ul>
-    {% else %}
-        <p>검색 결과가 없습니다.</p>
-    {% endif %}
+        {% else %}
+        <p class="error-message">검색 결과가 없습니다.</p>
+        {% endif %}
+    </div>
 </body>
+
 </html>
