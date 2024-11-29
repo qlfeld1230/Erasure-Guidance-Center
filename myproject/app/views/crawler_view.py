@@ -5,7 +5,6 @@ import random
 
 from .crawler_view_naver import naver_crawler
 from .crawler_view_google import google_crawler
-from .crawler_view_daum import daum_crawler
 
 '''
 IP 차단 회피를 방지하기 위한
@@ -65,20 +64,13 @@ def integrated_crawler_view(request):
         google_link_list, google_result_count = google_crawler(
             user, headers, search_limit)
 
-        # 다음 크롤러 호출
-        daum_link_list, daum_result_count = daum_crawler(
-            user, headers, search_limit
-        )
-
         # 결과를 템플릿으로 전달
         return render(request, 'crawler.html', {
             'page_title': '통합 검색 결과',
             'naver_link_list': naver_link_list,
             'google_link_list': google_link_list,
-            'daum_link_list': daum_link_list,
             'naver_result_count': naver_result_count,
-            'google_result_count': google_result_count,
-            'daum_result_count': daum_result_count,
+            'google_result_count': google_result_count, 
             'search_query': search_query,
         })
 

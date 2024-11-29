@@ -65,16 +65,11 @@ urlpatterns = [
     path('main/naver_rss/', Naver_rss.rss, name='naver_rss'),
     path('main/cafe_search/', Naver.cafe_search, name='cafe_search'),
 
-    # 다음
-    path('daum/', daum.daum_search, name='daum_search'),
-
-    # 트위터
-    path('twitter/', redirect_to_twitter_home, name='redirect_to_twitter_home'),
-
     # 유튜브 댓글
     path('youtube/', redirect_to_google_activity,
          name='redirect_to_google_activity'),
 
-
+    # 트위터
+    path('twitter/', redirect_to_twitter_home, name='redirect_to_twitter_home'),
 
 ]

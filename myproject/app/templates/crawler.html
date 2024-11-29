@@ -29,6 +29,7 @@
                 opacity: 0;
                 transform: translateY(10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -174,24 +175,9 @@
                 </ul>
             </div>
 
-            <!-- Daum 검색 결과 -->
-            <div class="block">
-                <h2>Daum 검색 결과 ({{ daum_result_count }}건)</h2>
-                <ul>
-                    {% if daum_link_list %}
-                    {% for link in daum_link_list %}
-                    <li>
-                        <a href="{{ link.url }}" target="_blank">{{ link.text }}</a>
-                        <p class="description">{{ link.description }}</p>
-                    </li>
-                    {% endfor %}
-                    {% else %}
-                    <li>다음 검색 결과가 없습니다.</li>
-                    {% endif %}
-                </ul>
-            </div>
+
         </div>
-       
+
     </div>
 
     <script>
