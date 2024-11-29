@@ -117,10 +117,6 @@ h1 {
     transform: translateY(-2px);
 }
 
-.footer {
-    /* Footer styles removed */
-}
-
 @media (max-width: 768px) {
     body {
         flex-direction: column;
