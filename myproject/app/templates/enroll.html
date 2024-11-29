@@ -48,7 +48,7 @@
         /* 콘텐츠 영역 스타일 */
         .content {
             flex-grow: 1;
-            padding: 20px;
+            padding: 50px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -61,6 +61,8 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 300px;
+            max-height: 80vh; /* 화면 높이에 맞게 최대 높이를 설정 */
+            overflow-y: auto; /* 스크롤 가능 */
         }
 
         .enroll-container h2 {
@@ -129,12 +131,9 @@
             </div>
             {% endif %}
 
-            <form method="post" action="{% url 'homepage_enroll' %}">
+            <form method="post" action="{% url 'enroll' %}">
                 {% csrf_token %}
-                {% if form.non_field_errors %}
-                    <div class="error-message">{{ form.non_field_errors }}</div>
-                {% endif %}
-
+                
                 <!-- 기본 필드 -->
                 <div>
                     {{ form.username.label_tag }}
@@ -216,14 +215,25 @@
                         <div class="error-message">{{ form.resident_number.errors }}</div>
                     {% endif %}
                 </div>
-                <!--약관동의체크박스(임시)-->                
-                <div>
-                    {{ form.terms.label_tag }}
+
+                <div style="display: flex; align-items: center;">
+                    <!-- 개인정보 수집 및 이용 동의 링크 수정 -->
+                    <a href="#" onclick="openConsentWindow(event)" style="margin-right: 10px; white-space: nowrap;">개인정보 수집 및 이용 동의</a>
+                    
+                    <!-- Terms 체크박스 폼 -->
                     {{ form.terms }}
                     {% if form.terms.errors %}
                         <div class="error-message">{{ form.terms.errors }}</div>
                     {% endif %}
                 </div>
+                <script>
+                    // 팝업 창을 열어 동의 내용을 보여주는 함수
+                    function openConsentWindow(event) {
+                        event.preventDefault();  // 기본 링크 동작 방지
+                        const consentWindow = window.open("{% url 'consent' %}", "Consent", "width=800,height=600");
+                        consentWindow.focus();  // 팝업 창을 포커스
+                    }
+                </script>
 
                 <button type="submit">회원가입</button>
             </form>
@@ -234,6 +244,5 @@
     <div class="footer">
         <p>ChatGPT는 실수를 할 수 있습니다. 중요한 정보를 확인하세요.</p>
     </div> {% endcomment %}
-
 </body>
 </html>
