@@ -125,7 +125,7 @@
 
 <body>
     <div class="container">
-        <h1>네이버 카페글 검색</h1>
+        <h1>네이버 카페에서 내 흔적 찾기</h1>
         <form class="search-form" action="{% url 'cafe_search' %}" method="get">
             <input type="text" name="query" placeholder="검색어를 입력하세요" value="{{ request.GET.query }}">
             <button type="submit">검색</button>

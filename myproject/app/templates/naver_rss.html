@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>네이버 검색 및 RSS 피드</title>
+    <title>네이버 RSS 피드</title>
     <style>
         /* 기본 스타일 */
         body {
@@ -24,7 +24,7 @@
         /* 폼 스타일 */
         form {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
             margin: 20px auto;
             padding: 20px;
@@ -35,23 +35,19 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        label {
-            font-size: 1rem;
-            margin-bottom: 8px;
-        }
-
+        /* 입력 박스와 버튼을 가로로 배치 */
         input[type="text"] {
-            width: 100%;
+            flex: 1; /* 가로로 꽉 차게 설정 */
             padding: 10px;
-            margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            margin-right: 10px; /* 버튼과 간격을 줄 수 있도록 설정 */
         }
 
         button {
             padding: 10px 15px;
             border: none;
-            background-color: #007BFF;
+            background-color: #7c7cff;
             color: #fff;
             font-size: 1rem;
             border-radius: 4px;
@@ -60,7 +56,7 @@
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #a0a3ff;
         }
 
         /* 오류 메시지 스타일 */
@@ -104,7 +100,6 @@
             margin: 8px 0;
         }
 
-        
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
@@ -121,11 +116,10 @@
     </script>
 </head>
 <body>
-    <h1>네이버 검색 및 RSS 피드</h1>
+    <h1>네이버 블로그에서 내 흔적 검색하기</h1>
 
     <!-- 검색 폼 -->
     <form action="{% url 'naver_rss' %}" method="GET">
-        <label for="blog_id">블로그 ID:</label>
         <input type="text" id="blog_id" name="blog_id" placeholder="블로그 ID 입력" required>
         <button type="submit">검색</button>
     </form>
@@ -137,7 +131,7 @@
 
     <!-- 검색 결과 표시 -->
     {% if posts %}
-        <h2 style="text-align: center;">{{ blog_id }} 블로그의 RSS 피드</h2>
+        <h2 style="text-align: center;">{{ blog_id }}님의 흔적들</h2>
         <ul>
             {% for post in posts %}
                 <li>

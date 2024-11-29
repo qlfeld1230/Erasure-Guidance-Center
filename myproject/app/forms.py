@@ -1,4 +1,5 @@
 from django import forms
+from django.db import models
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
 
@@ -7,15 +8,20 @@ from .models import CustomUser
 '''
 class CustomUserEnrollForm(UserCreationForm):
     
-    phone_number = forms.CharField(max_length=15, required=False)
+    name = forms.CharField(max_length=100, required=True)
+    nickname = forms.CharField(max_length=100, required=True)
+    organization = forms.CharField(max_length=100, required=True)
+    email = forms.EmailField(required=True)
+    birth = forms.DateField(required=True)
+    phone = forms.CharField(max_length=15, required=True)
     terms = forms.BooleanField(label="약관에 동의합니다.")
     
     class Meta:
         model = CustomUser
         fields = [
-            'username', 'email', 'password1', 'password2',
-            'first_name', 'last_name', 'age', 'address', 'school', 'resident_number'
-        ]
+            'name', 'nickname', 'password1', 'password2',
+             'organization','email', 'birth', 'phone',
+            ]
         
     #이메일 유효성 검사
     def clean_email(self):

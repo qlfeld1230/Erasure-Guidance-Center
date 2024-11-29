@@ -32,7 +32,7 @@ h1 {
 .main-search {
     padding: 15px 40px;
     font-size: 18px;
-    background-color: #007bff;
+    background-color: #7c7cff;
     color: white;
     border: none;
     border-radius: 30px;
@@ -42,7 +42,7 @@ h1 {
 }
 
 .main-search:hover {
-    background-color: #0056b3;
+    background-color: #a0a3ff;;
 }
 
 .platforms {

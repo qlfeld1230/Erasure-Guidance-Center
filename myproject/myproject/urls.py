@@ -26,11 +26,11 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='login.html',
          success_url='/'), name='login'),
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
-    path('enroll/', EnrollView.as_view(), name='enroll'),
     path('crawler/', integrated_crawler_view),
     path('consent/', ConsentView.as_view(),
          name='consent'),  # 개인정보 수집 및 이용 동의 페이지 URL
-
+    path('consent/enroll/', EnrollView.as_view(), name='enroll'),
+     
 
     # path('', MainView.as_view(), name = 'main'),
 
