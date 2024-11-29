@@ -6,10 +6,12 @@ from django.shortcuts import render
 def google_crawler(user_data, headers, search_limit):
     # user_data에서 검색 키워드 추출
     queries = {
-        "name": user_data["get_name"](),
+         "name": user_data["get_name"](),
         "nickname": user_data["get_nickname"](),
         "affiliation": user_data["get_affiliation"](),
         "email": user_data["get_email"](),
+        "birth": user_data["get_birth"](),
+        "phone": user_data["get_phone"](),
     }
 
     # 크롤링 결과를 저장할 리스트
