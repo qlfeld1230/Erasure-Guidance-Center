@@ -32,34 +32,6 @@ def naver_crawler(user_data, headers, search_limit):
     # 크롤링 결과 저장
     naver_link_list = []
 
-    # AND 조합 검색 실행
-    for combined_query in and_combinations:
-        url = f"https://search.naver.com/search.naver?query={requests.utils.quote(combined_query)}"
-        response = requests.get(url, headers=headers)
-        if response.status_code == 200:
-            soup = BeautifulSoup(response.text, 'html.parser')
-            items = soup.select('a.api_txt_lines')
-            for item in items:
-                link_text = item.get_text()  # 제목
-                link_url = item.get('href')  # URL
-                description_element = item.find_next('div')  # 본문 내용 추출 (추정)
-                description = description_element.get_text() if description_element else "내용 없음"
-
-                # 제목 및 본문 내용 길이 제한
-                link_text = (
-                    link_text[:50] + "...") if len(link_text) > 50 else link_text
-                description = (
-                    description[:300] + "...") if len(description) > 300 else description
-
-                naver_link_list.append({
-                    'text': link_text,
-                    'url': link_url,
-                    'description': description,
-                    'query_type': f"AND ({combined_query})"
-                })
-
-                if len(naver_link_list) >= search_limit:
-                    break
 
     # OR 검색 실행
     for single_query in or_queries:
