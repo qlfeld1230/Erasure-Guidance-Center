@@ -126,13 +126,21 @@
             margin-top: 5px;
             font-size: 0.9em;
         }
+
+        mark {
+            background-color: #fff9c4;
+            color: #000;
+            font-weight: bold;
+            padding: 0 2px;
+            border-radius: 3px;
+        }
     </style>
 </head>
 
 <body>
     <div class="chat-container">
         <div class="header">
-            통합 검색 결과
+            {{ page_title }}
         </div>
         <div class="results">
             <!-- Google 검색 결과 -->
@@ -146,8 +154,14 @@
                     {% if google_link_list %}
                     {% for link in google_link_list %}
                     <li>
-                        <a href="{{ link.url }}" target="_blank">{{ link.text }}</a>
-                        <p class="description">{{ link.description }}</p>
+                        <!-- 제목 강조 -->
+                        <a href="{{ link.url }}" target="_blank">
+                            {{ link.text|safe }}
+                        </a>
+                        <!-- 설명 강조 -->
+                        <p class="description">
+                            {{ link.description|safe }}
+                        </p>
                     </li>
                     {% endfor %}
                     {% else %}
@@ -167,8 +181,14 @@
                     {% if naver_link_list %}
                     {% for link in naver_link_list %}
                     <li>
-                        <a href="{{ link.url }}" target="_blank">{{ link.text }}</a>
-                        <p class="description">{{ link.description }}</p>
+                        <!-- 제목 강조 -->
+                        <a href="{{ link.url }}" target="_blank">
+                            {{ link.text|safe }}
+                        </a>
+                        <!-- 설명 강조 -->
+                        <p class="description">
+                            {{ link.description|safe }}
+                        </p>
                     </li>
                     {% endfor %}
                     {% else %}
