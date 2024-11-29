@@ -31,14 +31,15 @@ user data 공간
 
 
 # app/views/user_data_module.py
-def user_data():
+def user_data(request):
+    user_info = request.session.get('user_info')
     return {
-        "get_name": lambda: "권호열",
-        "get_nickname": lambda: "hykwon",
-        "get_affiliation": lambda: "강원대학교",
-        "get_email": lambda: " hykwon@kangwon.ac.kr",
-        "get_birth": lambda: " 720503",
-        "get_phone": lambda: " 033-250-6383",
+        "get_name": lambda: user_info['name'],
+        "get_nickname": lambda: user_info['nickname'],
+        "get_affiliation": lambda: user_info['organization'],
+        "get_email": lambda: user_info['email'],
+        "get_birth": lambda: user_info['birthday'],
+        "get_phone": lambda: user_info['phone_number'],
     }
 
 
@@ -53,7 +54,7 @@ def integrated_crawler_view(request):
         }
 
         # user_data 생성
-        user = user_data()
+        user = user_data(request)
 
         # 검색결과 수 제한
         search_limit = 20

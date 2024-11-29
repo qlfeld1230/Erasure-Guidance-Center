@@ -13,8 +13,8 @@ class CustomUserEnrollForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = [
-            'username', 'email', 'password1', 'password2',
-            'first_name', 'last_name', 'phone_number','birthday', 'organization' 
+            'username', 'email', 'password1', 'password2', 'name', 'nickname',
+            'phone_number','birthday', 'organization' 
         ]
         
     #이메일 유효성 검사
