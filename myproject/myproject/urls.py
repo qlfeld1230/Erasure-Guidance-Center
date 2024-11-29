@@ -10,6 +10,7 @@ from app.views.naver_view import *
 from app.views.kakao_view import *
 from app.views.homepage_view import *
 from app.views.page_view import *
+from app.views.X_view import *
 
 ''' 개요
 - 홈
@@ -68,7 +69,7 @@ urlpatterns = [
     path('daum/', daum.daum_search, name='daum_search'),
 
     # 트위터
-    # 인스타그램
+    path('twitter/', redirect_to_twitter_home, name='redirect_to_twitter_home'),
 
     # 유튜브 댓글
     path('youtube/', redirect_to_google_activity,
