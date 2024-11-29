@@ -14,6 +14,8 @@
 <body>
     <div class="container">
         <h1>내 개인정보 찾기</h1>
+
+        <!-- 통합 검색 -->
         <div class="form-box">
             <form method="post" action="/crawler/">
                 {% csrf_token %}
@@ -21,17 +23,10 @@
             </form>
         </div>
 
+        <!-- 플랫폼 버튼 섹션 -->
         <div class="platforms">
+            <!-- 네이버 블로그 -->
             <div class="platform-row">
-                <div class="platform-item">
-                    <form method="post" action="cafe_search/">
-                        {% csrf_token %}
-                        <button type="submit" class="icon-button"
-                            style="background-image: url('{% static 'img/cafe_icon.png' %}');">
-                            <span>카페</span>
-                        </button>
-                    </form>
-                </div>
                 <div class="platform-item">
                     <form method="post" action="naver_rss/">
                         {% csrf_token %}
@@ -42,48 +37,57 @@
                     </form>
                 </div>
             </div>
-            <!-- 페이스북 버튼 -->
-            <div class="platform-item">
-                <form method="post" action="facebook/login/">
-                    {% csrf_token %}
-                    <button type="submit" class="icon-button"
-                        style="background-image: url('{% static 'img/facebook_icon.png' %}');">
-                        <span>페이스북</span>
-                    </button>
-                </form>
+
+            <!-- 페이스북 -->
+            <div class="platform-row">
+                <div class="platform-item">
+                    <form method="post" action="facebook/login/">
+                        {% csrf_token %}
+                        <button type="submit" class="icon-button"
+                            style="background-image: url('{% static 'img/facebook_icon.png' %}');">
+                            <span>페이스북</span>
+                        </button>
+                    </form>
+                </div>
             </div>
 
-            <!-- 인스타그램 버튼 -->
-            <div class="platform-item">
-                <form method="post" action="instagram/login/">
-                    {% csrf_token %}
-                    <button type="submit" class="icon-button"
-                        style="background-image: url('{% static 'img/instagram_icon.png' %}');">
-                        <span>인스타그램</span>
-                    </button>
-                </form>
+            <!-- 인스타그램 -->
+            <div class="platform-row">
+                <div class="platform-item">
+                    <form method="post" action="instagram/login/">
+                        {% csrf_token %}
+                        <button type="submit" class="icon-button"
+                            style="background-image: url('{% static 'img/instagram_icon.png' %}');">
+                            <span>인스타그램</span>
+                        </button>
+                    </form>
+                </div>
             </div>
 
-            <!-- X 버튼 -->
-            <div class="platform-item">
-                <form method="post" action="/youtube/">
-                    {% csrf_token %}
-                    <button type="submit" class="icon-button"
-                        style="background-image: url('{% static 'img/youtube_icon.png' %}');">
-                        <span>유튜브 댓글</span>
-                    </button>
-                </form>
+            <!-- 유튜브 -->
+            <div class="platform-row">
+                <div class="platform-item">
+                    <form method="post" action="/youtube/">
+                        {% csrf_token %}
+                        <button type="submit" class="icon-button"
+                            style="background-image: url('{% static 'img/youtube_icon.png' %}');">
+                            <span>유튜브 댓글</span>
+                        </button>
+                    </form>
+                </div>
             </div>
 
-            <!-- 네이트 판 버튼 -->
-            <div class="platform-item">
-                <form method="post" action="/twitter/">
-                    {% csrf_token %}
-                    <button type="submit" class="icon-button"
-                        style="background-image: url('{% static 'img/x_icon.png' %}');">
-                        <span>X(트위터)</span>
-                    </button>
-                </form>
+            <!-- 트위터 -->
+            <div class="platform-row">
+                <div class="platform-item">
+                    <form method="post" action="/twitter/">
+                        {% csrf_token %}
+                        <button type="submit" class="icon-button"
+                            style="background-image: url('{% static 'img/x_icon.png' %}');">
+                            <span>X(트위터)</span>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

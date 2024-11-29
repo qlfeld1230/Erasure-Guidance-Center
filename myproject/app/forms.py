@@ -19,9 +19,9 @@ class CustomUserEnrollForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = [
-            'name', 'nickname', 'password1', 'password2',
-             'organization','email', 'birth', 'phone',
-            ]
+            'username', 'email', 'password1', 'password2', 'name', 'nickname',
+            'phone_number','birthday', 'organization' 
+        ]
         
     #이메일 유효성 검사
     def clean_email(self):

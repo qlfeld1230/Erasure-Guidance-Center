@@ -29,6 +29,7 @@
                 opacity: 0;
                 transform: translateY(10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -61,10 +62,32 @@
             box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
         }
 
+        .block-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
         .block h2 {
             font-size: 1.4em;
-            margin-bottom: 15px;
             color: #333;
+            margin: 0;
+        }
+
+        .delete-request-button {
+            background-color: #dc3545;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9em;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .delete-request-button:hover {
+            background-color: #c82333;
         }
 
         .block ul {
@@ -103,34 +126,6 @@
             margin-top: 5px;
             font-size: 0.9em;
         }
-
-        .footer {
-            padding: 20px;
-            border-top: 1px solid #eaeaea;
-            background-color: #f8f9fa;
-            text-align: center;
-        }
-
-        .footer input {
-            width: calc(100% - 100px);
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-right: 10px;
-        }
-
-        .footer button {
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .footer button:hover {
-            background-color: #0056b3;
-        }
     </style>
 </head>
 
@@ -142,7 +137,11 @@
         <div class="results">
             <!-- Google 검색 결과 -->
             <div class="block">
-                <h2>Google 검색 결과 ({{ google_result_count }}건)</h2>
+                <div class="block-header">
+                    <h2>Google 검색 결과 ({{ google_result_count }}건)</h2>
+                    <a href="https://support.google.com/websearch/contact/content_removal_form" target="_blank"
+                        class="delete-request-button">삭제 요청</a>
+                </div>
                 <ul>
                     {% if google_link_list %}
                     {% for link in google_link_list %}
@@ -159,7 +158,11 @@
 
             <!-- Naver 검색 결과 -->
             <div class="block">
-                <h2>Naver 검색 결과 ({{ naver_result_count }}건)</h2>
+                <div class="block-header">
+                    <h2>Naver 검색 결과 ({{ naver_result_count }}건)</h2>
+                    <a href="https://help.naver.com/service/5626/contents/19894?lang=ko" target="_blank"
+                        class="delete-request-button">삭제 요청</a>
+                </div>
                 <ul>
                     {% if naver_link_list %}
                     {% for link in naver_link_list %}
@@ -173,38 +176,8 @@
                     {% endif %}
                 </ul>
             </div>
-
-            <!-- Daum 검색 결과 -->
-            <div class="block">
-                <h2>Daum 검색 결과 ({{ daum_result_count }}건)</h2>
-                <ul>
-                    {% if daum_link_list %}
-                    {% for link in daum_link_list %}
-                    <li>
-                        <a href="{{ link.url }}" target="_blank">{{ link.text }}</a>
-                        <p class="description">{{ link.description }}</p>
-                    </li>
-                    {% endfor %}
-                    {% else %}
-                    <li>다음 검색 결과가 없습니다.</li>
-                    {% endif %}
-                </ul>
-            </div>
         </div>
-       
     </div>
-
-    <script>
-        // 애니메이션 효과를 추가하기 위한 간단한 예시
-        document.querySelectorAll('.block ul li').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                item.style.transform = 'translateY(-2px)';
-            });
-            item.addEventListener('mouseleave', () => {
-                item.style.transform = 'translateY(0)';
-            });
-        });
-    </script>
 </body>
 
 </html>

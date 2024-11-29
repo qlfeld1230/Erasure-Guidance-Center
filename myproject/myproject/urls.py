@@ -10,6 +10,7 @@ from app.views.naver_view import *
 from app.views.kakao_view import *
 from app.views.homepage_view import *
 from app.views.page_view import *
+from app.views.X_view import *
 
 ''' 개요
 - 홈
@@ -38,11 +39,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # 회원 가입 및 로그인 관련 및 홈 크롤러
-    path('homepage/login/', LoginView.as_view(template_name='homepage_login.html'),
-         name='homepage_login'),
-    path('homepage/logout/', CustomLogoutView.as_view(), name='homepage_logout'),
-    path('homepage/enroll/', EnrollView.as_view(), name='homepage_enroll'),
-    path('homepage/crawler/', integrated_crawler_view),
+#     path('homepage/login/', LoginView.as_view(template_name='homepage_login.html'),
+#          name='homepage_login'),
+#     path('homepage/logout/', CustomLogoutView.as_view(), name='homepage_logout'),
+#     path('homepage/enroll/', EnrollView.as_view(), name='homepage_enroll'),
+#     path('homepage/crawler/', integrated_crawler_view),
 
     # # 회원 가입 및 로그인 관련 및 홈 크롤러
     # path('homepage/login/', LoginView.as_view(template_name='homepage_login.html', success_url='/'), name='homepage_login'),
@@ -62,18 +63,12 @@ urlpatterns = [
     # 네이버
     # path('naver/', Naver.web_search, name='naver_search'),
     path('main/naver_rss/', Naver_rss.rss, name='naver_rss'),
-    path('main/cafe_search/', Naver.cafe_search, name='cafe_search'),
-
-    # 다음
-    path('daum/', daum.daum_search, name='daum_search'),
-
-    # 트위터
-    # 인스타그램
 
     # 유튜브 댓글
     path('youtube/', redirect_to_google_activity,
          name='redirect_to_google_activity'),
 
-
+    # 트위터
+    path('twitter/', redirect_to_twitter_home, name='redirect_to_twitter_home'),
 
 ]

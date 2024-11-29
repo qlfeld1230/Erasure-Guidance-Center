@@ -7,8 +7,8 @@
     <title>네이버 카페글 검색 결과</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            font-family: 'Noto Sans KR', Arial, sans-serif;
+            background-color: #f3f4f6;
             margin: 0;
             padding: 0;
         }
@@ -28,6 +28,7 @@
                 opacity: 0;
                 transform: translateY(10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -36,7 +37,7 @@
 
         h1 {
             text-align: center;
-            color: #000000;
+            color: #333;
             margin-bottom: 20px;
         }
 
@@ -71,10 +72,25 @@
             background-color: #0056b3;
         }
 
-        .error-message {
-            color: red;
-            font-weight: bold;
+        .message {
             text-align: center;
+            font-size: 1.1em;
+            font-weight: bold;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .no-results-message {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
         }
 
         .result-list {
@@ -127,14 +143,11 @@
     <div class="container">
         <h1>네이버 카페에서 내 흔적 찾기</h1>
         <form class="search-form" action="{% url 'cafe_search' %}" method="get">
-            <input type="text" name="query" placeholder="검색어를 입력하세요" value="{{ request.GET.query }}">
+            <input type="text" name="query" placeholder="검색어를 입력하세요" value="{{ query }}">
             <button type="submit">검색</button>
         </form>
 
-        {% if error %}
-        <p class="error-message">{{ error }}</p>
-        {% endif %}
-
+        <!-- 검색 결과 -->
         {% if results %}
         <h2>검색 결과</h2>
         <ul class="result-list">
@@ -148,7 +161,7 @@
             {% endfor %}
         </ul>
         {% else %}
-        <p class="error-message">검색 결과가 없습니다.</p>
+        <p class="message no-results-message">검색 결과가 없습니다.</p>
         {% endif %}
     </div>
 </body>

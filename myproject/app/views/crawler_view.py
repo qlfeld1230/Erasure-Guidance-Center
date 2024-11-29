@@ -5,7 +5,6 @@ import random
 
 from .crawler_view_naver import naver_crawler
 from .crawler_view_google import google_crawler
-from .crawler_view_daum import daum_crawler
 
 '''
 IP 차단 회피를 방지하기 위한
@@ -32,12 +31,15 @@ user data 공간
 
 
 # app/views/user_data_module.py
-def user_data():
+def user_data(request):
+    user_info = request.session.get('user_info')
     return {
-        "get_name": lambda: "test",
-        "get_nickname": lambda: "nickname",
-        "get_affiliation": lambda: "강원대학교",
-        "get_email": lambda: "empty@email.com"
+        "get_name": lambda: user_info['name'],
+        "get_nickname": lambda: user_info['nickname'],
+        "get_affiliation": lambda: user_info['organization'],
+        "get_email": lambda: user_info['email'],
+        "get_birth": lambda: user_info['birthday'],
+        "get_phone": lambda: user_info['phone_number'],
     }
 
 
@@ -52,7 +54,7 @@ def integrated_crawler_view(request):
         }
 
         # user_data 생성
-        user = user_data()
+        user = user_data(request)
 
         # 검색결과 수 제한
         search_limit = 20
@@ -65,20 +67,13 @@ def integrated_crawler_view(request):
         google_link_list, google_result_count = google_crawler(
             user, headers, search_limit)
 
-        # 다음 크롤러 호출
-        daum_link_list, daum_result_count = daum_crawler(
-            user, headers, search_limit
-        )
-
         # 결과를 템플릿으로 전달
         return render(request, 'crawler.html', {
             'page_title': '통합 검색 결과',
             'naver_link_list': naver_link_list,
             'google_link_list': google_link_list,
-            'daum_link_list': daum_link_list,
             'naver_result_count': naver_result_count,
             'google_result_count': google_result_count,
-            'daum_result_count': daum_result_count,
             'search_query': search_query,
         })
 

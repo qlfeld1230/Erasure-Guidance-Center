@@ -19,8 +19,8 @@ class CustomUser(AbstractUser):
     # 이게 실질적인 id 입니다.
     username = models.CharField(max_length=150, unique=True)
     password = models.CharField(max_length=128)                 # 비밀번호
-    first_name = models.CharField(max_length=150, blank=True)   # 이름
-    last_name = models.CharField(max_length=150, blank=True)    # 성
+    name = models.CharField(max_length=150, blank=True)   # 이름
+    nickname = models.CharField(max_length=150, blank=True)
     email = models.EmailField(blank=True)                       # 이메일
     is_staff = models.BooleanField(
         default=False)               # 서비스의 운영자인지, 소비자인지
@@ -30,10 +30,9 @@ class CustomUser(AbstractUser):
     last_login = models.DateTimeField(null=True, blank=True)    # 최근 로그인 날짜
 
     # 커스텀 필드
-    age = models.PositiveIntegerField(null=True, blank=True)      # 나이
-    address = models.CharField(max_length=255, blank=True)        # 주소 필드
-    school = models.CharField(max_length=100, blank=True)         # 학교 필드
-    resident_number = models.CharField(max_length=15, blank=True)  # 주민번호
+    organization = models.CharField(max_length=100, blank=True)         # 소속
+    birthday = models.CharField(max_length=15, blank=True)  # 생일
+    phone_number = models.CharField(max_length=150, blank=True) # 핸드폰번호
 
     def __str__(self):
         return self.username  # User object 대신 나타낼 문자
