@@ -48,3 +48,11 @@ class ConsentView(View):
 class IntroduceView(View):
     def post(self, request):
         return render(request, 'introduce.html')
+
+
+class Privacy_policyView(View):
+    def post(self, request):
+        return render(request, 'privacy-policy.html')
+
+    def get(self, request):
+        return render(request, 'privacy-policy.html')

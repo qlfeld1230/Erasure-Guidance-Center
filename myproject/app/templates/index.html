@@ -67,11 +67,14 @@
                 <button type="submit" class="btn btn-start">시작하기</button>
             </form>
         </section>
+        <footer class="footer">
+            <form method="post" action="/privacy-policy/" class="footer-form">
+                {% csrf_token %}
+                &copy; 2024 흔적 삭제 안내소 모든 권리 보유 |
+                <a href="/privacy-policy/" class="footer-link">개인 정보 처리방침</a>
+            </form>
+        </footer>
     </main>
-
-    <footer class="footer">
-        <!-- Footer content removed -->
-    </footer>
 </body>
 
 </html>
