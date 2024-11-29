@@ -7,10 +7,15 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        /* General Body Styling */
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             height: 100vh;
             background-color: #f4f6f9;
@@ -18,79 +23,85 @@
             justify-content: center;
             flex-direction: column;
         }
-    
-        /* 콘텐츠 영역 스타일 */
+
+        /* Form Container */
         .content {
             width: 100%;
-            max-width: 500px; /* Increase max width for wider form */
-            padding: 40px; /* Increase padding for more space */
+            max-width: 500px;
+            padding: 40px;
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
             align-items: center;
-            flex-grow: 1;
             overflow-y: auto;
         }
-    
+
+        /* Heading */
         .content h2 {
-            font-size: 32px; /* Increase font size for the heading */
+            font-size: 32px;
             font-weight: bold;
             color: #333;
             margin-bottom: 30px;
         }
-    
-        .content .form-group {
+
+        /* Form Groups */
+        .form-group {
             width: 100%;
-            margin-bottom: 20px; /* Increase margin for better spacing */
+            margin-bottom: 20px;
         }
-    
-        .content .form-group label {
-            font-size: 16px; /* Larger font size for labels */
+
+        .form-group label {
+            font-size: 16px;
             color: #666;
             margin-bottom: 8px;
             display: block;
             font-weight: bold;
         }
-    
-        .content .form-group input {
+
+        /* Input Fields */
+        .form-group input {
             width: 100%;
-            padding: 16px 18px; /* Increase padding for larger input fields */
-            font-size: 18px; /* Increase font size for inputs */
+            padding: 16px 18px;
+            font-size: 18px;
             border: 1px solid #ddd;
             border-radius: 8px;
-            box-sizing: border-box;
             transition: border-color 0.3s ease;
+            margin-top: 5px;
         }
-    
-        .content .form-group input:focus {
+
+        .form-group input:focus {
             outline: none;
             border-color: #7c7cff;
         }
-    
-        .content .form-group .error-message {
+
+        /* Error Message */
+        .error-message {
             color: red;
-            font-size: 14px; /* Increase font size for error messages */
+            font-size: 14px;
             margin-top: 5px;
         }
-    
-        .content button {
+
+        /* Submit Button */
+        button {
             width: 100%;
-            padding: 16px 0; /* Increase button padding */
+            padding: 16px 0;
             background-color: #7c7cff;
             color: white;
-            font-size: 18px; /* Larger font size for button */
+            font-size: 18px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            margin-top: 20px;
         }
-    
-        .content button:hover {
+
+        button:hover {
             background-color: #5a5acd;
         }
-    
+
+        /* Footer */
         .footer {
             background-color: #333;
             color: #fff;
@@ -100,11 +111,19 @@
             bottom: 0;
             width: 100%;
         }
+
+        /* Link Styling */
+        a {
+            color: #7c7cff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-
-    <!-- 콘텐츠 영역 -->
     <div class="content">
         <h2>회원가입</h2>
 
@@ -119,7 +138,6 @@
         <form method="post" action="{% url 'enroll' %}">
             {% csrf_token %}
 
-            <!-- 필수 필드 -->
             <div class="form-group">
                 {{ form.name.label_tag }}
                 {{ form.name }}
@@ -136,29 +154,13 @@
                 {% endif %}
             </div>
 
-                <div>
-                    {{ form.name.label_tag }}
-                    {{ form.name }}
-                    {% if form.name.errors %}
-                        <div class="error-message">{{ form.name.errors }}</div>
-                    {% endif %}
-                </div>
-
-                <div>
-                    {{ form.nickname.label_tag }}
-                    {{ form.nickname }}
-                    {% if form.nickname.errors %}
-                        <div class="error-message">{{ form.nickname.errors }}</div>
-                    {% endif %}
-                </div>
-
-                <div>
-                    {{ form.password1.label_tag }}
-                    {{ form.password1 }}
-                    {% if form.password1.errors %}
-                        <div class="error-message">{{ form.password1.errors }}</div>
-                    {% endif %}
-                </div>
+            <div class="form-group">
+                {{ form.password1.label_tag }}
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                    <div class="error-message">{{ form.password1.errors }}</div>
+                {% endif %}
+            </div>
 
             <div class="form-group">
                 {{ form.password2.label_tag }}
@@ -168,54 +170,32 @@
                 {% endif %}
             </div>
 
-                <!-- 추가 필드 -->
-                <div>
-                    {{ form.phone_number.label_tag }}
-                    {{ form.phone_number }}
-                    {% if form.phone_number.errors %}
-                        <div class="error-message">{{ form.phone_number.errors }}</div>
-                    {% endif %}
-                </div>
+            <div class="form-group">
+                {{ form.phone_number.label_tag }}
+                {{ form.phone_number }}
+                {% if form.phone_number.errors %}
+                    <div class="error-message">{{ form.phone_number.errors }}</div>
+                {% endif %}
+            </div>
 
-                <div>
-                    {{ form.organization.label_tag }}
-                    {{ form.organization }}
-                    {% if form.organization.errors %}
-                        <div class="error-message">{{ form.organization.errors }}</div>
-                    {% endif %}
-                </div>
+            <div class="form-group">
+                {{ form.organization.label_tag }}
+                {{ form.organization }}
+                {% if form.organization.errors %}
+                    <div class="error-message">{{ form.organization.errors }}</div>
+                {% endif %}
+            </div>
 
-                <div>
-                    {{ form.birthday.label_tag }}
-                    {{ form.birthday }}
-                    {% if form.birthday.errors %}
-                        <div class="error-message">{{ form.birthday.errors }}</div>
-                    {% endif %}
-                </div>
-
-                <div style="display: flex; align-items: center;">
-                    <!-- 개인정보 수집 및 이용 동의 링크 수정 -->
-                    <a href="#" onclick="openConsentWindow(event)" style="margin-right: 10px; white-space: nowrap;">개인정보 수집 및 이용 동의</a>
-                    
-                    <!-- Terms 체크박스 폼 -->
-                    {{ form.terms }}
-                    {% if form.terms.errors %}
-                        <div class="error-message">{{ form.terms.errors }}</div>
-                    {% endif %}
-                </div>
-                <script>
-                    // 팝업 창을 열어 동의 내용을 보여주는 함수
-                    function openConsentWindow(event) {
-                        event.preventDefault();  // 기본 링크 동작 방지
-                        const consentWindow = window.open("{% url 'consent' %}", "Consent", "width=800,height=600");
-                        consentWindow.focus();  // 팝업 창을 포커스
-                    }
-                </script>
+            <div class="form-group">
+                {{ form.birthday.label_tag }}
+                {{ form.birthday }}
+                {% if form.birthday.errors %}
+                    <div class="error-message">{{ form.birthday.errors }}</div>
+                {% endif %}
+            </div>
 
             <button type="submit">회원가입</button>
         </form>
-
-       
     </div>
 
     <div class="footer">

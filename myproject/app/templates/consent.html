@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>개인정보 수집 및 이용 동의</title>
     <style>
+        /* General reset for margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
@@ -13,28 +20,39 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            overflow: auto; /* Prevents scrollbars when zoomed */
         }
+
         .consent-container {
             background-color: #ffffff;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             padding: 30px;
-            max-width: 800px;
+            max-width: 100%; /* Make the container width responsive */
             width: 100%;
+            max-width: 800px; /* Limit the width to 800px */
             box-sizing: border-box;
+            overflow: hidden; /* Prevents overflow issues */
+            margin: 15px; /* Add some margin for better spacing */
         }
+
         .title-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
+
         .consent-container h2 {
             font-size: 28px;
             margin-bottom: 20px;
             color: #333333;
             text-align: center;
-            flex-grow: 1; /* Ensures the title takes the available space */
+            flex-grow: 1;
+            font-size: 24px; /* Adjust font size for smaller screens */
         }
+
         .agree-all-button {
             background-color: #f0f0f0;
             color: #333333;
@@ -44,17 +62,22 @@
             font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s;
+            flex-shrink: 0;
         }
+
         .agree-all-button:hover {
             background-color: #dddddd;
         }
+
         .consent-list {
             list-style-type: none;
             padding: 0;
         }
+
         .consent-item {
             margin-bottom: 20px;
         }
+
         .consent-content {
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -66,19 +89,23 @@
             line-height: 1.6;
             background-color: #fafafa;
         }
+
         .checkbox-group {
             display: flex;
             flex-direction: column;
             margin-bottom: 20px;
         }
+
         .checkbox-group label {
             font-size: 16px;
             color: #333333;
             margin-bottom: 8px;
         }
+
         .checkbox-group input[type="radio"] {
             margin-right: 10px;
         }
+
         .submit-button {
             background-color: #e5e5e5;
             color: #a1a1a1;
@@ -90,13 +117,60 @@
             width: 100%;
             transition: background-color 0.3s;
         }
+
         .submit-button.active {
             background-color: #4CAF50;
             color: white;
             cursor: pointer;
         }
+
         .submit-button:hover {
             background-color: #45a049;
+        }
+
+        /* Media Queries for responsiveness */
+        @media (max-width: 768px) {
+            .consent-container {
+                padding: 20px;
+            }
+
+            .consent-container h2 {
+                font-size: 20px;
+            }
+
+            .consent-item {
+                font-size: 14px; /* Adjust text size for smaller screens */
+            }
+
+            .agree-all-button {
+                width: 100%;
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .submit-button {
+                font-size: 16px;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .consent-container {
+                padding: 15px;
+            }
+
+            .consent-container h2 {
+                font-size: 18px;
+            }
+
+            .checkbox-group label {
+                font-size: 14px;
+            }
+
+            .submit-button {
+                font-size: 14px;
+                padding: 12px;
+            }
         }
     </style>
 </head>
@@ -189,15 +263,11 @@
         function submitConsent() {
             if (document.getElementById("submitBtn").classList.contains("active")) {
                 alert("동의해주셔서 감사합니다. 다음 단계로 이동합니다.");
-               
                 window.location.href = 'enroll';
             } else {
                 alert("모든 항목에 동의하셔야 다음 단계로 이동할 수 있습니다.");
             }
         }
-
-
-
 
         // 전체 동의하기 버튼 클릭 시 처리
         function agreeAll() {
