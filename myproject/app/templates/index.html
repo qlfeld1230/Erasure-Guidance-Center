@@ -11,20 +11,18 @@
 </head>
 
 <body>
-    <nav class="navbar">
-        <a href="#" class="nav-icon">➕</a>
-        <a href="#" class="nav-icon">⭐</a>
-        <a href="#" class="nav-icon">⛔</a>
-        <a href="#" class="nav-icon">❌</a>
-    </nav>
 
     <main class="main-content">
         <header class="user-header">
             {% if user.is_authenticated %}
             <span>안녕하세요, {{ user.username }}님!</span>
-            <a href="/logout/" class="btn btn-logout">로그아웃</a>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-logout">로그아웃</button>
+            </form>
             {% else %}
             <a href="/login/" class="btn btn-login">로그인</a>
+            <a href="/enroll/" class="btn btn-enroll">회원가입</a>
             {% endif %}
         </header>
 

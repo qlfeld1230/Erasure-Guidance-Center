@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
+from django.urls import reverse_lazy
 from django.views import View
+
+from app.forms import CustomUserEnrollForm
 
 
 class IndexView(View):
@@ -18,16 +21,24 @@ class MainView(View):
 
 
 class EnrollView(View):
+    template_name = 'enroll.html'
+    form_class = CustomUserEnrollForm
+    success_url = reverse_lazy('login')
+
     def get(self, request):
-        form = UserCreationForm()
-        return render(request, 'enroll.html', {'form': form})
+        form = self.form_class()  # CustomUserEnrollForm을 사용
+        return render(request, self.template_name, {'form': form})
 
     def post(self, request):
-        form = UserCreationForm(request.POST)
+        form = self.form_class(request.POST)  # CustomUserEnrollForm을 사용
         if form.is_valid():
             form.save()
             messages.success(request, '회원가입이 완료되었습니다.')
-            return redirect('login')
+            return redirect(self.success_url)
         else:
             messages.error(request, '회원가입 중 오류가 발생했습니다. 다시 시도해주세요.')
-            return render(request, 'enroll.html', {'form': form})
+            return render(request, self.template_name, {'form': form})
+
+class ConsentView(View):
+    def get(self, request):
+        return render(request, 'consent.html')

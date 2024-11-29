@@ -24,7 +24,7 @@
         <div class="platforms">
             <div class="platform-row">
                 <div class="platform-item">
-                    <form method="post" action="/cafe/">
+                    <form method="post" action="cafe_search/">
                         {% csrf_token %}
                         <button type="submit" class="icon-button"
                             style="background-image: url('{% static 'img/cafe_icon.png' %}');">
@@ -77,11 +77,11 @@
 
             <!-- 네이트 판 버튼 -->
             <div class="platform-item">
-                <form method="post" action="/natepan/">
+                <form method="post" action="/twitter/">
                     {% csrf_token %}
                     <button type="submit" class="icon-button"
-                        style="background-image: url('{% static 'img/nate_icon.png' %}');">
-                        <span>네이트 판</span>
+                        style="background-image: url('{% static 'img/x_icon.png' %}');">
+                        <span>X(트위터)</span>
                     </button>
                 </form>
             </div>
