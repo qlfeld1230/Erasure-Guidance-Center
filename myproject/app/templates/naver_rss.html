@@ -4,6 +4,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>네이버 검색 및 RSS 피드</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #444;
+        }
+
+        /* 폼 스타일 */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 400px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #007BFF;
+            color: #fff;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* 오류 메시지 스타일 */
+        p[style="color: red;"] {
+            text-align: center;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        /* 결과 목록 스타일 */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: #fff;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+        }
+
+        li h2 {
+            font-size: 1.2rem;
+            color: #007BFF;
+        }
+
+        li a {
+            color: #007BFF;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        li a:hover {
+            color: #0056b3;
+        }
+
+        li p {
+            margin: 8px 0;
+        }
+
+        
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.querySelector("form");
+            const blogIdInput = document.getElementById("blog_id");
+
+            form.addEventListener("submit", (e) => {
+                if (!blogIdInput.value.trim()) {
+                    e.preventDefault();
+                    alert("블로그 ID를 입력해주세요!");
+                }
+            });
+        });
+    </script>
 </head>
 <body>
     <h1>네이버 검색 및 RSS 피드</h1>
@@ -22,7 +137,7 @@
 
     <!-- 검색 결과 표시 -->
     {% if posts %}
-        <h2>{{ blog_id }} 블로그의 RSS 피드</h2>
+        <h2 style="text-align: center;">{{ blog_id }} 블로그의 RSS 피드</h2>
         <ul>
             {% for post in posts %}
                 <li>
@@ -30,12 +145,11 @@
                     <p><a href="{{ post.link }}" target="_blank">Link</a></p>
                     <p>{{ post.description }}</p>
                     <p>Published Date: {{ post.pubDate }}</p>
-                    <hr>
                 </li>
             {% endfor %}
         </ul>
     {% else %}
-        <p>검색 결과가 없습니다.</p>
+        <p style="text-align: center;">검색 결과가 없습니다.</p>
     {% endif %}
 </body>
 </html>
