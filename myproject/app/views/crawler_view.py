@@ -33,10 +33,12 @@ user data 공간
 # app/views/user_data_module.py
 def user_data():
     return {
-        "get_name": lambda: "test",
-        "get_nickname": lambda: "nickname",
+        "get_name": lambda: "권호열",
+        "get_nickname": lambda: "hykwon",
         "get_affiliation": lambda: "강원대학교",
-        "get_email": lambda: "empty@email.com"
+        "get_email": lambda: " hykwon@kangwon.ac.kr",
+        "get_birth": lambda: " 720503",
+        "get_phone": lambda: " 033-250-6383",
     }
 
 
@@ -70,7 +72,7 @@ def integrated_crawler_view(request):
             'naver_link_list': naver_link_list,
             'google_link_list': google_link_list,
             'naver_result_count': naver_result_count,
-            'google_result_count': google_result_count, 
+            'google_result_count': google_result_count,
             'search_query': search_query,
         })
 
