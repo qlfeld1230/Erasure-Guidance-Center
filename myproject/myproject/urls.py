@@ -63,7 +63,6 @@ urlpatterns = [
     # 네이버
     # path('naver/', Naver.web_search, name='naver_search'),
     path('main/naver_rss/', Naver_rss.rss, name='naver_rss'),
-    path('main/cafe_search/', Naver.cafe_search, name='cafe_search'),
 
     # 유튜브 댓글
     path('youtube/', redirect_to_google_activity,
