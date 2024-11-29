@@ -5,6 +5,6 @@ from .models import CustomUser
 
 class UserAdmin(admin.ModelAdmin):
     list_display = ('username', 'email', 'password1', 'password2',
-            'first_name', 'last_name', 'age', 'address', 'school', 'resident_number' )
+            'first_name', 'last_name', 'phone_number','birthday', 'organization' )
 admin.site.register(CustomUser)
 

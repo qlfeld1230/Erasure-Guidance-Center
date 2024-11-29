@@ -38,11 +38,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # 회원 가입 및 로그인 관련 및 홈 크롤러
-    path('homepage/login/', LoginView.as_view(template_name='homepage_login.html'),
-         name='homepage_login'),
-    path('homepage/logout/', CustomLogoutView.as_view(), name='homepage_logout'),
-    path('homepage/enroll/', EnrollView.as_view(), name='homepage_enroll'),
-    path('homepage/crawler/', integrated_crawler_view),
+#     path('homepage/login/', LoginView.as_view(template_name='homepage_login.html'),
+#          name='homepage_login'),
+#     path('homepage/logout/', CustomLogoutView.as_view(), name='homepage_logout'),
+#     path('homepage/enroll/', EnrollView.as_view(), name='homepage_enroll'),
+#     path('homepage/crawler/', integrated_crawler_view),
 
     # # 회원 가입 및 로그인 관련 및 홈 크롤러
     # path('homepage/login/', LoginView.as_view(template_name='homepage_login.html', success_url='/'), name='homepage_login'),

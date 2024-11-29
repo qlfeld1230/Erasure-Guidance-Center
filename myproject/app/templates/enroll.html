@@ -152,18 +152,18 @@
                 </div>
 
                 <div>
-                    {{ form.first_name.label_tag }}
-                    {{ form.first_name }}
-                    {% if form.first_name.errors %}
-                        <div class="error-message">{{ form.first_name.errors }}</div>
+                    {{ form.name.label_tag }}
+                    {{ form.name }}
+                    {% if form.name.errors %}
+                        <div class="error-message">{{ form.name.errors }}</div>
                     {% endif %}
                 </div>
 
                 <div>
-                    {{ form.last_name.label_tag }}
-                    {{ form.last_name }}
-                    {% if form.last_name.errors %}
-                        <div class="error-message">{{ form.last_name.errors }}</div>
+                    {{ form.nickname.label_tag }}
+                    {{ form.nickname }}
+                    {% if form.nickname.errors %}
+                        <div class="error-message">{{ form.nickname.errors }}</div>
                     {% endif %}
                 </div>
 
@@ -185,34 +185,26 @@
 
                 <!-- 추가 필드 -->
                 <div>
-                    {{ form.age.label_tag }}
-                    {{ form.age }}
-                    {% if form.age.errors %}
-                        <div class="error-message">{{ form.age.errors }}</div>
+                    {{ form.phone_number.label_tag }}
+                    {{ form.phone_number }}
+                    {% if form.phone_number.errors %}
+                        <div class="error-message">{{ form.phone_number.errors }}</div>
                     {% endif %}
                 </div>
 
                 <div>
-                    {{ form.address.label_tag }}
-                    {{ form.address }}
-                    {% if form.address.errors %}
-                        <div class="error-message">{{ form.address.errors }}</div>
+                    {{ form.organization.label_tag }}
+                    {{ form.organization }}
+                    {% if form.organization.errors %}
+                        <div class="error-message">{{ form.organization.errors }}</div>
                     {% endif %}
                 </div>
 
                 <div>
-                    {{ form.school.label_tag }}
-                    {{ form.school }}
-                    {% if form.school.errors %}
-                        <div class="error-message">{{ form.school.errors }}</div>
-                    {% endif %}
-                </div>
-
-                <div>
-                    {{ form.resident_number.label_tag }}
-                    {{ form.resident_number }}
-                    {% if form.resident_number.errors %}
-                        <div class="error-message">{{ form.resident_number.errors }}</div>
+                    {{ form.birthday.label_tag }}
+                    {{ form.birthday }}
+                    {% if form.birthday.errors %}
+                        <div class="error-message">{{ form.birthday.errors }}</div>
                     {% endif %}
                 </div>
 
@@ -240,9 +232,8 @@
         </div>
     </div>
 
-    {% comment %} <!-- 푸터 -->
     <div class="footer">
-        <p>ChatGPT는 실수를 할 수 있습니다. 중요한 정보를 확인하세요.</p>
-    </div> {% endcomment %}
+        <p>흔적 삭제 안내소는 실수를 할 수 있습니다. 중요한 정보를 확인하세요.</p>
+    </div>
 </body>
 </html>

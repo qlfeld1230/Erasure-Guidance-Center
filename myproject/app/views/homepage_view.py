@@ -10,6 +10,8 @@ from django.contrib.auth import logout
 import os
 import django
 import sys
+import logging
+logger = logging.getLogger(__name__)
 
 sys.path.append(
     "C:/Users/sej68/Documents/GitHub/Erasure-Guidance-Center/myproject")
@@ -63,9 +65,8 @@ class EnrollView(View):
             # 사용자 인증 후 로그인
             user = authenticate(username=username, password1=raw_password)
             if user is not None:
-                login(request, user)
+                login(request, user)                
                 messages.success(request, "회원가입과 로그인 성공!")
-                print('로그인 성공')
                 return redirect('main')  # 메인 페이지로 리다이렉트
             else:
                 messages.error(request, "사용자 인증에 실패했습니다.")

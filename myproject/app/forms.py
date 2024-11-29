@@ -14,7 +14,7 @@ class CustomUserEnrollForm(UserCreationForm):
         model = CustomUser
         fields = [
             'username', 'email', 'password1', 'password2',
-            'first_name', 'last_name', 'age', 'address', 'school', 'resident_number'
+            'first_name', 'last_name', 'phone_number','birthday', 'organization' 
         ]
         
     #이메일 유효성 검사
