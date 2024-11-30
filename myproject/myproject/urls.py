@@ -35,6 +35,7 @@ urlpatterns = [
     path('privacy-policy/', Privacy_policyView.as_view(),
          name='privacy-policy'),
 
+    path('consent/enroll/', EnrollView.as_view(), name='enroll'),
 
 
     # path('', MainView.as_view(), name = 'main'),
