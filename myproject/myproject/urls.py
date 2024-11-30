@@ -31,6 +31,11 @@ urlpatterns = [
     path('crawler/', integrated_crawler_view),
     path('consent/', ConsentView.as_view(),
          name='consent'),  # 개인정보 수집 및 이용 동의 페이지 URL
+    path('introduce/', IntroduceView.as_view(),
+         name='introduce'),
+    path('privacy-policy/', Privacy_policyView.as_view(),
+         name='privacy-policy'),
+
 
 
     # path('', MainView.as_view(), name = 'main'),

@@ -70,6 +70,59 @@ body {
     text-align: center;
 }
 
+.footer {
+    background-color: #eaeaea;
+    /* 옅은 회색 배경 */
+    text-align: center;
+    /* 텍스트 가운데 정렬 */
+    padding: 20px;
+    /* 여백 추가 */
+    border-top: 1px solid #ddd;
+    /* 구분을 위한 경계선 */
+    width: 100%;
+    /* 화면 전체 너비 차지 */
+    box-sizing: border-box;
+    /* 정확한 크기 계산 */
+    font-size: 0.9rem;
+    /* 폰트 크기 조정 */
+}
+
+.footer-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 20px;
+    /* 여백 추가 */
+    font-size: inherit;
+    /* 부모 폰트 크기를 상속 */
+    border: none;
+    /* 기본 테두리 제거 */
+    background: none;
+    /* 기본 배경 제거 */
+    line-height: 1.6;
+    /* 텍스트 줄 간격 조정 */
+}
+
+.footer-link {
+    color: #5151c9;
+    /* 링크 색상 */
+    text-decoration: none;
+    /* 밑줄 제거 */
+    font-weight: bold;
+    /* 텍스트 강조 */
+    margin-left: 5px;
+    /* 앞 텍스트와의 간격 */
+}
+
+.footer-link:hover {
+    color: #5663ea;
+    /* 호버 시 색상 유지 */
+    text-decoration: underline;
+    /* 밑줄 추가 */
+}
+
+
 h1 {
     font-size: 2.5rem;
     font-weight: 700;
@@ -115,10 +168,6 @@ h1 {
 .btn:hover {
     opacity: 0.9;
     transform: translateY(-2px);
-}
-
-.footer {
-    /* Footer styles removed */
 }
 
 @media (max-width: 768px) {

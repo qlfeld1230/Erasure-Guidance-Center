@@ -8,6 +8,34 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/index_style.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 기존 디자인을 유지하기 위한 스타일 */
+        .btn-info {
+            margin: 1.5rem 0;
+            padding: 1rem 2rem;
+            border: 2px solid #7c7cff;
+            /* 테두리 */
+            border-radius: 8px;
+            /* 모서리 둥글기 */
+            font-size: 1.1rem;
+            color: #7c7cff;
+            /* 텍스트 색상 */
+            background-color: rgba(124, 124, 255, 0.1);
+            /* 배경색 투명도 */
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+            text-align: center;
+        }
+
+        .btn-info:hover {
+            background-color: #7c7cff;
+            /* 호버 시 배경색 */
+            color: #fff;
+            /* 호버 시 텍스트 색상 */
+            transform: translateY(-2px);
+            /* 약간 위로 올라오는 효과 */
+        }
+    </style>
 </head>
 
 <body>
@@ -28,19 +56,25 @@
 
         <section class="hero">
             <h1>흔적 삭제 안내소</h1>
-            <div class="info-box">
-                흔적 삭제 안내소란?
-            </div>
+            <!-- 흔적 삭제 안내소란? 버튼 -->
+            <form method="post" action="/introduce/">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-info">흔적 삭제 안내소란?</button>
+            </form>
+            <!-- 시작하기 버튼 -->
             <form method="post" action="/main/" class="start-form">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-start">시작하기</button>
             </form>
         </section>
+        <footer class="footer">
+            <form method="post" action="/privacy-policy/" class="footer-form">
+                {% csrf_token %}
+                &copy; 2024 흔적 삭제 안내소 모든 권리 보유 |
+                <a href="/privacy-policy/" class="footer-link">개인 정보 처리방침</a>
+            </form>
+        </footer>
     </main>
-
-    <footer class="footer">
-        <!-- Footer content removed -->
-    </footer>
 </body>
 
 </html>
