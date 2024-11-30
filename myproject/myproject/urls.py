@@ -1,8 +1,9 @@
 from django.contrib import admin
 from django.urls import path
-from app.views.homepage_view import MainView, EnrollView
+from app.views.homepage_view import MainView
 from app.views.crawler_view import integrated_crawler_view
 from django.contrib.auth.views import LogoutView, LoginView
+from app.views.page_view import EnrollView
 
 from app.views.youtube_view import *
 from app.views.meta_view import *
@@ -35,7 +36,7 @@ urlpatterns = [
     path('consent/enroll/', EnrollView.as_view(), name='enroll'),
     path('privacy-policy/', Privacy_policyView.as_view(),
          name='privacy-policy'),
-
+    path('consent/enroll/', EnrollView.as_view(), name='enroll'),
 
 
     # path('', MainView.as_view(), name = 'main'),
@@ -44,11 +45,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # 회원 가입 및 로그인 관련 및 홈 크롤러
-#     path('homepage/login/', LoginView.as_view(template_name='homepage_login.html'),
-#          name='homepage_login'),
-#     path('homepage/logout/', CustomLogoutView.as_view(), name='homepage_logout'),
-#     path('homepage/enroll/', EnrollView.as_view(), name='homepage_enroll'),
-#     path('homepage/crawler/', integrated_crawler_view),
+    #     path('homepage/login/', LoginView.as_view(template_name='homepage_login.html'),
+    #          name='homepage_login'),
+    #     path('homepage/logout/', CustomLogoutView.as_view(), name='homepage_logout'),
+    #     path('homepage/enroll/', EnrollView.as_view(), name='homepage_enroll'),
+    #     path('homepage/crawler/', integrated_crawler_view),
 
     # # 회원 가입 및 로그인 관련 및 홈 크롤러
     # path('homepage/login/', LoginView.as_view(template_name='homepage_login.html', success_url='/'), name='homepage_login'),
