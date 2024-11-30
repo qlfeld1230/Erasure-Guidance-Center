@@ -13,9 +13,6 @@ class CustomUserEnrollForm(UserCreationForm):
     nickname = forms.CharField(max_length=100, required=True)
     organization = forms.CharField(max_length=100, required=True)
     email = forms.EmailField(required=True)
-    birth = forms.DateField(required=True)
-    phone = forms.CharField(max_length=15, required=True)
-    terms = forms.BooleanField(label="약관에 동의합니다.")
     
     birthday = forms.DateField(required=True)  # `birth` -> `birthday`로 수정
     phone_number = forms.CharField(max_length=15, required=True)  # `phone` -> `phone_number`로 수정
