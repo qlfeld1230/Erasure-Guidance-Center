@@ -7,20 +7,21 @@ from .models import CustomUser
 - 장고는 DRF와는 달라서 templates의 html 들을 수정하기 위해서 form 을 수정해야 함
 '''
 class CustomUserEnrollForm(UserCreationForm):
-    
+    username=forms.CharField(max_length=100, required=True)
     name = forms.CharField(max_length=100, required=True)
     nickname = forms.CharField(max_length=100, required=True)
     organization = forms.CharField(max_length=100, required=True)
     email = forms.EmailField(required=True)
-    birth = forms.DateField(required=True)
-    phone = forms.CharField(max_length=15, required=True)
     terms = forms.BooleanField(label="약관에 동의합니다.")
-    
+    birthday = forms.DateField(required=True)  # `birth` -> `birthday`로 수정
+    phone_number = forms.CharField(max_length=15, required=True)  # `phone` -> `phone_number`로 수정
+    # terms = forms.BooleanField(label="약관에 동의합니다.")  # 그대로 사용
+
     class Meta:
         model = CustomUser
         fields = [
             'username', 'email', 'password1', 'password2', 'name', 'nickname',
-            'phone_number','birthday', 'organization' 
+            'phone_number','birthday', 'organization', 
         ]
         
     #이메일 유효성 검사
