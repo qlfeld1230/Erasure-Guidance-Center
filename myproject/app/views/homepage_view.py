@@ -40,43 +40,43 @@ class MainView(View):
 '''
 
 
-class EnrollView(View):
-    model = CustomUser
-    template_name = 'homepage_enroll.html'
-    success_url = reverse_lazy('homepage_login')  # 성공 시 login 페이지로 리다이렉션
+# class EnrollView(View):
+#     model = CustomUser
+#     template_name = 'homepage_enroll.html'
+#     success_url = reverse_lazy('homepage_login')  # 성공 시 login 페이지로 리다이렉션
 
-    def dispatch(self, request, *args, **kwargs):
-        if request.method == "POST":
-            return self.post(request)
-        return self.get(request)
+#     def dispatch(self, request, *args, **kwargs):
+#         if request.method == "POST":
+#             return self.post(request)
+#         return self.get(request)
 
-    def get(self, request):
-        form = CustomUserEnrollForm()
-        return render(request, self.template_name, {'form': form})
+#     def get(self, request):
+#         form = CustomUserEnrollForm()
+#         return render(request, self.template_name, {'form': form})
 
-    def post(self, request):
-        form = CustomUserEnrollForm(request.POST)
-        if form.is_valid():
-            # 회원가입 저장
-            user = form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
+#     def post(self, request):
+#         form = CustomUserEnrollForm(request.POST)
+#         if form.is_valid():
+#             # 회원가입 저장
+#             user = form.save()
+#             username = form.cleaned_data.get('username')
+#             raw_password = form.cleaned_data.get('password1')
 
-            # 사용자 인증 후 로그인
-            user = authenticate(username=username, password1=raw_password)
-            if user is not None:
-                login(request, user)                
-                messages.success(request, "회원가입과 로그인 성공!")
-                return redirect('main')  # 메인 페이지로 리다이렉트
-            else:
-                messages.error(request, "사용자 인증에 실패했습니다.")
-                return redirect(self.success_url)
-        else:
-            # 폼 오류 출력
-            print('로그인 실패')
-            print(form.errors)  # 오류 메시지 출력
-            messages.error(request, "회원가입 중 오류가 발생했습니다.")
-            return render(request, self.template_name, {'form': form, 'errors': form.errors})
+#             # 사용자 인증 후 로그인
+#             user = authenticate(username=username, password1=raw_password)
+#             if user is not None:
+#                 login(request, user)
+#                 messages.success(request, "회원가입과 로그인 성공!")
+#                 return redirect('main')  # 메인 페이지로 리다이렉트
+#             else:
+#                 messages.error(request, "사용자 인증에 실패했습니다.")
+#                 return redirect(self.success_url)
+#         else:
+#             # 폼 오류 출력
+#             print('로그인 실패')
+#             print(form.errors)  # 오류 메시지 출력
+#             messages.error(request, "회원가입 중 오류가 발생했습니다.")
+#             return render(request, self.template_name, {'form': form, 'errors': form.errors})
 
 
 class CustomLogoutView(LogoutView):

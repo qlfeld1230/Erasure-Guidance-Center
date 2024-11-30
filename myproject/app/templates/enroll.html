@@ -147,6 +147,14 @@
             </div>
 
             <div class="form-group">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <div class="error-message">{{ form.email.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
                 {{ form.nickname.label_tag }}
                 {{ form.nickname }}
                 {% if form.nickname.errors %}

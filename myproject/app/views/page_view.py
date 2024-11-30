@@ -36,6 +36,7 @@ class EnrollView(View):
             messages.success(request, '회원가입이 완료되었습니다.')
             return redirect(self.success_url)
         else:
+            print(form.errors)
             messages.error(request, '회원가입 중 오류가 발생했습니다. 다시 시도해주세요.')
             return render(request, self.template_name, {'form': form})
 
