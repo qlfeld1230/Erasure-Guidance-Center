@@ -39,6 +39,20 @@ class EnrollView(View):
             messages.error(request, '회원가입 중 오류가 발생했습니다. 다시 시도해주세요.')
             return render(request, self.template_name, {'form': form})
 
+
 class ConsentView(View):
     def get(self, request):
         return render(request, 'consent.html')
+
+
+class IntroduceView(View):
+    def post(self, request):
+        return render(request, 'introduce.html')
+
+
+class Privacy_policyView(View):
+    def post(self, request):
+        return render(request, 'privacy-policy.html')
+
+    def get(self, request):
+        return render(request, 'privacy-policy.html')
