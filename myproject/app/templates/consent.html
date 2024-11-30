@@ -128,6 +128,15 @@
             background-color: #45a049;
         }
 
+        .alert {
+            background: #ffe5e5;
+            color: #d9534f;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
         /* Media Queries for responsiveness */
         @media (max-width: 768px) {
             .consent-container {
@@ -171,6 +180,7 @@
                 font-size: 14px;
                 padding: 12px;
             }
+    
         }
     </style>
 </head>
@@ -181,12 +191,15 @@
             <button class="agree-all-button" onclick="agreeAll()">전체 동의하기</button>
             <h2>개인정보 수집 및 이용 동의</h2>
         </div>
+        <div class="alert">
+            ※ 개인정보 수집 및 이용에 동의하지 않을 경우 회원가입 및 서비스 이용이 제한될 수 있습니다.
+        </div>
         
         <ul class="consent-list">
             <li class="consent-item">
                 <p><strong>1. 개인정보 수집 항목 (필수)</strong></p>
                 <div class="consent-content">
-                    <p>- 이름, 아이디, 이메일 주소, 휴대전화번호, 사용자 활동 내역(삭제 요청 기록 등)</p>
+                    <p>-  이름, 아이디, 이메일 주소, 휴대전화번호<br>- 사용자 활동 내역: 검색 기록(키워드, 검색 날짜), 삭제 요청 내역(요청한 플랫폼, 요청 날짜)</p>
                     <div class="checkbox-group" id="consent1">
                         <label>
                             <input type="radio" name="consent1" value="agree"> 동의함
@@ -202,8 +215,7 @@
                 <p><strong>2. 개인정보 수집 및 이용 목적(필수) </strong></p>
                 <div class="consent-content">
                     <p>- 사용자 요청에 따른 개인정보 삭제 요청 처리<br>
-                       - 서비스 이용 내역 관리 및 ‘잊혀질 권리’ 보호 시스템 운영<br>
-                       - 개인정보 보호 관련 정보 제공 및 상담</p>
+                       - 서비스 이용 내역 관리 및 ‘잊혀질 권리’ 보호 시스템 운영</p>
                     <div class="checkbox-group" id="consent2">
                         <label>
                             <input type="radio" name="consent2" value="agree"> 동의함
@@ -219,13 +231,42 @@
                 <p><strong>3. 개인정보의 보유 및 이용 기간(필수) </strong></p>
                 <div class="consent-content">
                     <p>- 사용자의 개인정보는 수집 및 이용 목적이 달성될 때까지 보유됩니다.<br>
-                       - 개인정보가 불필요하게 되었을 때에는 지체 없이 해당 개인정보를 파기합니다.</p>
+                       - 개인정보가 불필요하게 되었을 때에는 지체 없이 해당 개인정보를 파기합니다.<br>
+                       - 법령에 따라 일부 정보는 분리 보관될 수 있습니다.</p>
                     <div class="checkbox-group" id="consent3">
                         <label>
                             <input type="radio" name="consent3" value="agree"> 동의함
                         </label>
                         <label>
                             <input type="radio" name="consent3" value="disagree"> 동의하지 않음
+                        </label>
+                    </div>
+                </div>
+            </li>
+            <li class="consent-item">
+                <p><strong>4. 개인정보 처리 위탁 동의 (필수) </strong></p>
+                <div class="consent-content">
+                    <p>- 본 서비스는 Google 및 Naver API를 통해 개인정보 검색 및 삭제 요청을 지원하며, 해당 목적으로 개인정보가 위탁될 수 있습니다.<br></p>
+                    <div class="checkbox-group" id="consent4">
+                        <label>
+                            <input type="radio" name="consent4" value="agree"> 동의함
+                        </label>
+                        <label>
+                            <input type="radio" name="consent4" value="disagree"> 동의하지 않음
+                        </label>
+                    </div>
+                </div>
+            </li>
+            <li class="consent-item">
+                <p><strong>5. 만 14세 미만 회원의 동의 (필수) </strong></p>
+                <div class="consent-content">
+                    <p>- 만 14세 미만의 회원은 법정대리인의 동의를 반드시 받아야 합니다.<br></p>
+                    <div class="checkbox-group" id="consent5">
+                        <label>
+                            <input type="radio" name="consent5" value="agree"> 만 14세 이상
+                        </label>
+                        <label>
+                            <input type="radio" name="consent5" value="disagree">  만 14세 미만 (보호자 동의 필요)
                         </label>
                     </div>
                 </div>
@@ -241,11 +282,13 @@
             const consent1 = document.querySelector('input[name="consent1"]:checked');
             const consent2 = document.querySelector('input[name="consent2"]:checked');
             const consent3 = document.querySelector('input[name="consent3"]:checked');
+            const consent4 = document.querySelector('input[name="consent4"]:checked');
+            const consent5 = document.querySelector('input[name="consent5"]:checked');
             const submitButton = document.getElementById("submitBtn");
 
             // 모든 항목이 동의함으로 선택된 경우에만 '다음' 버튼을 활성화
-            if (consent1 && consent2 && consent3 && 
-                consent1.value === "agree" && consent2.value === "agree" && consent3.value === "agree") {
+            if (consent1 && consent2 && consent3 && consent4 && consent5 &&
+                consent1.value === "agree" && consent2.value === "agree" && consent3.value && consent4.value && consent5.value === "agree") {
                 submitButton.classList.add("active");
                 submitButton.disabled = false; // 버튼 활성화
             } else {

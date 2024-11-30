@@ -77,3 +77,5 @@ urlpatterns = [
     path('twitter/', redirect_to_twitter_home, name='redirect_to_twitter_home'),
 
 ]
+
+
