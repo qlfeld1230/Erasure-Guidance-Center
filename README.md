@@ -1,7 +1,7 @@
-# '흔적 삭제 안내소'   
+# 흔적 삭제 안내소
 'The Trace Removal Guide'
 
-'흔적 삭제 안내소'는 사용자가 인터넷에 퍼져 있는 자신의 개인정보를 검색하고, 삭제 요청을 할 수 있도록 개발 된 프로그램입니다.  
+흔적 삭제 안내소는 사용자가 인터넷에 퍼져 있는 자신의 개인정보를 검색하고, 삭제 요청을 할 수 있도록 개발 된 프로그램입니다.  
 "The Trace Removal Guide" is a program designed to help users search for their personal information scattered across the internet and submit deletion requests.
 
 **주요 기능**: Key Features
@@ -35,12 +35,16 @@
 3. **통합 검색, 블로그 검색 등 다양한 서비스 이용**:
    Click the button to explore and use various services
 
-## 📄 라이선스:
-licence파일 만들고 추가 예정
+## 📄 라이선스: License
+license파일 만들고 추가 예정
 
-## 📸 스크린샷
-  Screenshots
+## 📸 스크린샷: Screenshots
 1. **Index**
 2. **Main**
 3. **Web serach**
 4. **SNS serach**
+
+## 📞 연락처: contact
+1. 개발자: 신은지, 박성호, 김동한, 신기범, 이지민
+   Developers
+2. Email 및 GITHUB: Contributors 참조
