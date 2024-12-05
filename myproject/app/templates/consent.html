@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,28 +13,33 @@
             box-sizing: border-box;
         }
 
+        html,
         body {
+            height: auto;
+            /* 콘텐츠 높이에 따라 조정 */
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow-y: auto;
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
+        }
+
+        body {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: flex-start;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: auto; /* Prevents scrollbars when zoomed */
         }
 
         .consent-container {
+            margin: 30px auto;
+            max-width: 800px;
+            padding: 30px;
             background-color: #ffffff;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            max-width: 100%; /* Make the container width responsive */
-            width: 100%;
-            max-width: 800px; /* Limit the width to 800px */
-            box-sizing: border-box;
-            overflow: hidden; /* Prevents overflow issues */
-            margin: 15px; /* Add some margin for better spacing */
         }
 
         .title-container {
@@ -50,7 +56,8 @@
             color: #333333;
             text-align: center;
             flex-grow: 1;
-            font-size: 24px; /* Adjust font size for smaller screens */
+            font-size: 24px;
+            /* Adjust font size for smaller screens */
         }
 
         .agree-all-button {
@@ -148,7 +155,8 @@
             }
 
             .consent-item {
-                font-size: 14px; /* Adjust text size for smaller screens */
+                font-size: 14px;
+                /* Adjust text size for smaller screens */
             }
 
             .agree-all-button {
@@ -180,10 +188,11 @@
                 font-size: 14px;
                 padding: 12px;
             }
-    
+
         }
     </style>
 </head>
+
 <body>
     <div class="consent-container">
         <div class="title-container">
@@ -194,12 +203,12 @@
         <div class="alert">
             ※ 개인정보 수집 및 이용에 동의하지 않을 경우 회원가입 및 서비스 이용이 제한될 수 있습니다.
         </div>
-        
+
         <ul class="consent-list">
             <li class="consent-item">
                 <p><strong>1. 개인정보 수집 항목 (필수)</strong></p>
                 <div class="consent-content">
-                    <p>-  이름, 아이디, 이메일 주소, 휴대전화번호<br>- 사용자 활동 내역: 검색 기록(키워드, 검색 날짜), 삭제 요청 내역(요청한 플랫폼, 요청 날짜)</p>
+                    <p>- 이름, 아이디, 이메일 주소, 휴대전화번호<br>- 사용자 활동 내역: 검색 기록(키워드, 검색 날짜), 삭제 요청 내역(요청한 플랫폼, 요청 날짜)</p>
                     <div class="checkbox-group" id="consent1">
                         <label>
                             <input type="radio" name="consent1" value="agree"> 동의함
@@ -215,7 +224,7 @@
                 <p><strong>2. 개인정보 수집 및 이용 목적(필수) </strong></p>
                 <div class="consent-content">
                     <p>- 사용자 요청에 따른 개인정보 삭제 요청 처리<br>
-                       - 서비스 이용 내역 관리 및 ‘잊혀질 권리’ 보호 시스템 운영</p>
+                        - 서비스 이용 내역 관리 및 ‘잊혀질 권리’ 보호 시스템 운영</p>
                     <div class="checkbox-group" id="consent2">
                         <label>
                             <input type="radio" name="consent2" value="agree"> 동의함
@@ -231,8 +240,8 @@
                 <p><strong>3. 개인정보의 보유 및 이용 기간(필수) </strong></p>
                 <div class="consent-content">
                     <p>- 사용자의 개인정보는 수집 및 이용 목적이 달성될 때까지 보유됩니다.<br>
-                       - 개인정보가 불필요하게 되었을 때에는 지체 없이 해당 개인정보를 파기합니다.<br>
-                       - 법령에 따라 일부 정보는 분리 보관될 수 있습니다.</p>
+                        - 개인정보가 불필요하게 되었을 때에는 지체 없이 해당 개인정보를 파기합니다.<br>
+                        - 법령에 따라 일부 정보는 분리 보관될 수 있습니다.</p>
                     <div class="checkbox-group" id="consent3">
                         <label>
                             <input type="radio" name="consent3" value="agree"> 동의함
@@ -266,7 +275,7 @@
                             <input type="radio" name="consent5" value="agree"> 만 14세 이상
                         </label>
                         <label>
-                            <input type="radio" name="consent5" value="disagree">  만 14세 미만 (보호자 동의 필요)
+                            <input type="radio" name="consent5" value="disagree"> 만 14세 미만 (보호자 동의 필요)
                         </label>
                     </div>
                 </div>
@@ -324,4 +333,5 @@
         checkConsent();
     </script>
 </body>
+
 </html>
