@@ -24,7 +24,7 @@
    - Window: <가상환경 이름>\Scripts\activate
    - Mac/Linux : <가상환경 이름>/bin/activate  
    Activate the virtual environment (at the root level)
-6. **run server(최상위 루트/myroject)**: python manage.py runserver
+6. **서버 구동(최상위 루트/myroject)**: python manage.py runserver
    <br>Run the server (at the root level of myproject)  
 
 ## 🛠 사용 방법: how to use
