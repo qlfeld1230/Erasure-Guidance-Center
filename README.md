@@ -1,8 +1,8 @@
 # 흔적 삭제 안내소
-'The Trace Removal Guide'
+'Erasure-Guidance-Center'
 
 흔적 삭제 안내소는 사용자가 인터넷에 퍼져 있는 자신의 개인정보를 검색하고, 삭제 요청을 할 수 있도록 개발 된 프로그램입니다.  
-"The Trace Removal Guide" is a program designed to help users search for their personal information scattered across the internet and submit deletion requests.
+"Erasure-Guidance-Center" is a program designed to help users search for their personal information scattered across the internet and submit deletion requests.
 
 **주요 기능**: Key Features
 - 로그인 / 회원가입 기능  
