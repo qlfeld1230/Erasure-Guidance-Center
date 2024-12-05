@@ -22,7 +22,7 @@
    <br>Install dependencies
 4. **가상환경 실행(최상위 루트)**:
    - Window: <가상환경 이름>\Scripts\activate
-   - Mac/Linux : <가상환경 이름>/bin/activate
+   - Mac/Linux : <가상환경 이름>/bin/activate  
    Activate the virtual environment (at the root level)
 6. **run server(최상위 루트/myroject)**: python manage.py runserver
    <br>Run the server (at the root level of myproject)  
