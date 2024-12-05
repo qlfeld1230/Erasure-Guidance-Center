@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 - 흔적 삭제 안내소</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        /* General Body Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            height: 100vh;
+            background-color: #f4f6f9;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        /* Form Container */
+        .content {
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-y: auto;
+        }
+
+        /* Heading */
+        .content h2 {
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        /* Form Groups */
+        .form-group {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 8px;
+            display: block;
+            font-weight: bold;
+        }
+
+        /* Input Fields */
+        .form-group input {
+            width: 100%;
+            padding: 16px 18px;
+            font-size: 18px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+            margin-top: 5px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #7c7cff;
+        }
+
+        /* Error Message */
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* Submit Button */
+        button {
+            width: 100%;
+            padding: 16px 0;
+            background-color: #7c7cff;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #5a5acd;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Link Styling */
+        a {
+            color: #7c7cff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h2>회원가입</h2>
+
+        {% if messages %}
+            <div class="message-container">
+                {% for message in messages %}
+                    <div class="message {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="post" action="{% url 'enroll' %}">
+            {% csrf_token %}
+
+            <div class="form-group">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <div class="error-message">{{ form.username.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <div class="error-message">{{ form.email.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.name.label_tag }}
+                {{ form.name }}
+                {% if form.name.errors %}
+                    <div class="error-message">{{ form.name.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.nickname.label_tag }}
+                {{ form.nickname }}
+                {% if form.nickname.errors %}
+                    <div class="error-message">{{ form.nickname.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.password1.label_tag }}
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                    <div class="error-message">{{ form.password1.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.password2.label_tag }}
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                    <div class="error-message">{{ form.password2.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.phone_number.label_tag }}
+                {{ form.phone_number }}
+                {% if form.phone_number.errors %}
+                    <div class="error-message">{{ form.phone_number.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.organization.label_tag }}
+                {{ form.organization }}
+                {% if form.organization.errors %}
+                    <div class="error-message">{{ form.organization.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.birthday.label_tag }}
+                {{ form.birthday }}
+                {% if form.birthday.errors %}
+                    <div class="error-message">{{ form.birthday.errors }}</div>
+                {% endif %}
+            </div>
+
+            <button type="submit">회원가입</button>
+        </form>
+    </div>
+
+    <div class="footer">
+        <p>흔적 삭제 안내소는 실수를 할 수 있습니다. 중요한 정보를 확인하세요.</p>
+    </div>
+</body>
+</html>

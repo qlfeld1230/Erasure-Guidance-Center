@@ -1,0 +1,223 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>흔적 삭제 안내소 - 잊혀질 권리의 중요성</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f7fc;
+            color: #333;
+        }
+
+        /* 헤더 스타일 */
+        header {
+            background: linear-gradient(135deg, #4a90e2, #2e86de);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header img {
+            width: 140px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 2.8em;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1.3em;
+            margin-top: 15px;
+            color: #e0e0e0;
+        }
+
+        /* 애니메이션 효과 */
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('{% static "images/wave.svg" %}') repeat-x;
+            animation: wave 6s linear infinite;
+        }
+
+        @keyframes wave {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-200px);
+            }
+        }
+
+        /* 메인 섹션 스타일 */
+        .main-section {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .main-section h2 {
+            font-size: 2.4em;
+            color: #2e86de;
+            margin-bottom: 20px;
+        }
+
+        .main-section p {
+            font-size: 1.2em;
+            color: #555;
+            line-height: 1.8em;
+            margin-bottom: 30px;
+        }
+
+        .highlight {
+            color: #2e86de;
+            font-weight: bold;
+        }
+
+        /* 주요 기능 섹션 */
+        .features {
+            display: flex;
+            flex-direction: column;
+            /* 세로 정렬 */
+            gap: 20px;
+            /* 각 카드 간 간격 */
+            justify-content: center;
+            align-items: center;
+            margin: 40px auto;
+            max-width: 600px;
+            /* 최대 너비 조정 */
+        }
+
+        .feature {
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature h3 {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .feature p {
+            font-size: 1.1em;
+            color: #555;
+            line-height: 1.6em;
+            margin-bottom: 10px;
+        }
+
+        .feature i {
+            font-size: 2.5em;
+            color: #2e86de;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* CTA 버튼 */
+        .button {
+            display: inline-block;
+            background: #2e86de;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.2em;
+            text-decoration: none;
+            margin-top: 30px;
+            transition: background 0.3s ease;
+        }
+
+        .button:hover {
+            background: #1c5c9b;
+        }
+
+        /* 푸터 */
+        footer {
+            background-color: #333;
+            color: #ccc;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 헤더 -->
+    <header>
+        <img src="{% static 'img/logo2.png' %}" alt="흔적 삭제 안내소 로고">
+        <h1>흔적 삭제 안내소</h1>
+        <p>여러분의 '잊혀질 권리'를 안전하고 간편하게</p>
+        <div class="wave"></div>
+    </header>
+
+    <!-- 잊혀질 권리의 중요성 강조 섹션 -->
+    <div class="main-section">
+        <h2>왜 <span class="highlight">잊혀질 권리</span>가 중요한가?</h2>
+        <p>
+            디지털 세상에서 남겨진 흔적은 우리의 삶에 큰 영향을 미칠 수 있습니다. <br>
+            원하지 않는 데이터로부터 자유로워질 권리는 여러분의 프라이버시를 지키는 중요한 열쇠입니다.
+        </p>
+        <p>
+            <span class="highlight">흔적 삭제 안내소</span>는 흩어진 정보를 모아 <br>
+            효율적으로 관리하고 삭제를 도와드립니다.
+        </p>
+    </div>
+
+    <!-- 주요 기능 섹션 -->
+    <div class="features">
+        <div class="feature">
+            <i class="fa fa-search"></i>
+            <h3>📜 개인정보 검색</h3>
+            <p>네이버, 구글, 다음, 페이스북 등 주요 플랫폼에서<br> 개인정보를 검색하여 디지털 흔적을 빠르게 확인하세요.</p>
+            <p>흩어진 개인정보를 한 곳에서 통합적으로<br> 관리할 수 있는 편리함을 제공합니다.</p>
+        </div>
+        <div class="feature">
+            <i class="fa fa-link"></i>
+            <h3>🔗 삭제 요청 페이지 바로가기</h3>
+            <p>원하는 플랫폼의 삭제 요청 페이지로<br> 클릭 한 번으로 이동할 수 있습니다.</p>
+            <p>개별적인 요청 과정을 단축하여 시간과 노력을<br> 절약할 수 있습니다.</p>
+        </div>
+        <div class="feature">
+            <i class="fa fa-lock"></i>
+            <h3>🔒 안전한 데이터 관리</h3>
+            <p>암호화 기술을 활용해 사용자의 민감한 데이터를<br> 안전하게 보호합니다.</p>
+            <p>프라이버시를 우선으로 고려하여<br> 사용자의 신뢰를 확보합니다.</p>
+        </div>
+    </div>
+
+    <!-- 서비스 시작 버튼 -->
+    <div style="text-align: center;margin-bottom: 20px;">
+        <a href="{% url 'main' %}" class="button">내 흔적 검색하기</a>
+    </div>
+
+    <!-- 푸터 -->
+    <footer>
+        <p>&copy; 2024 흔적 삭제 안내소 모든 권리 보유</p>
+    </footer>
+</body>
+
+</html>
