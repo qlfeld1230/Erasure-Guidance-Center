@@ -54,10 +54,17 @@
 For complete license details of all dependencies used in this project, please refer to the licenses.json file located in the project root directory.  
 
 ## 📸 스크린샷: Screenshots
-1. **Index**
-2. **Main**
-3. **Web serach**
-4. **SNS serach**
+1. **Index Page**  
+   ![Index Page](screenshots/index.png)
+
+2. **Main Page**  
+   ![Main Page](screenshots/main.png)
+
+3. **Web Search Feature**  
+   ![Web Search](screenshots/search.png)
+
+4. **SNS Search Feature**  
+   ![SNS Search](screenshots/sns.png)
 
 ## 📞 연락처: contact
 1. **개발자**: 신은지, 박성호, 김동한, 신기범, 이지민  
