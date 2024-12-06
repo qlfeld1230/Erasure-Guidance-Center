@@ -50,7 +50,7 @@
   
 2. **전체 라이선스 정보**  
    Full License Information  
-전체 라이선스 정보는 licenses.json 파일에서 확인할 수 있습니다.
+전체 라이선스 정보는 licenses.json 파일에서 확인할 수 있습니다.  
 For complete license details of all dependencies used in this project, please refer to the licenses.json file located in the project root directory.  
 
 ## 📸 스크린샷: Screenshots
