@@ -16,17 +16,20 @@
 1. **리포지토리를 클론 합니다**: Clone the repository
    ```bash
    git clone https://github.com/KNU-CapstoneDesign/Erasure-Guidance-Center.git
-2. **가상환경 설정(최상위 루트)**: python -m venv <가상환경 이름>
-   <br>Set up a virtual environment (at the root level)
-3. **의존성 설치**: pip install -r requirements.txt
-   <br>Install dependencies
-4. **가상환경 실행(최상위 루트)**:
-   - Window: <가상환경 이름>\Scripts\activate
-   - Mac/Linux : <가상환경 이름>/bin/activate  
-   Activate the virtual environment (at the root level)
-6. **서버 구동(최상위 루트/myroject)**: python manage.py runserver
-   <br>Run the server (at the root level of myproject)  
+2. **가상환경 설정(최상위 루트)**: Set up a virtual environment (at the root level)
+   ```bash
+   python -m venv <가상환경 이름>
+3. **의존성 설치**: Install dependencies
+   ```bash
+   pip install -r requirements.txt
+4. **가상환경 실행(최상위 루트)**: Activate the virtual environment (at the root level)  
+    ```bash
+    <가상환경 이름>\Scripts\activate
 
+6. **서버 구동(최상위 루트/myroject)**: Run the server (at the root level of myproject)  
+    ```bash
+    python manage.py runserver
+    
 ## 🛠 사용 방법: how to use
 1. **로컬 호스트 실행**: http://127.0.0.1:8000/  
    Access the local host  
