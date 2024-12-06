@@ -13,7 +13,7 @@
   <br>Naver Blog Search, Web Search, Facebook Search, Instagram Search, YouTube Comment Search, X (formerly Twitter) Search
 
 ## 📦 설치 방법: Installation Guide
-1. **Clone the repository**:
+1. **리포지토리를 클론 합니다**: Clone the repository
    ```bash
    git clone https://github.com/KNU-CapstoneDesign/Erasure-Guidance-Center.git
 2. **가상환경 설정(최상위 루트)**: python -m venv <가상환경 이름>
@@ -36,9 +36,20 @@
    Click the button to explore and use various services  
 
 ## 📄 라이선스: License
-<!---
-license파일 만들고 추가 예정
---->
+1. **주요 라이선스 요약**  
+
+- Django
+- 버전: 4.2.5
+- 라이선스: BSD
+- requests
+- 버전: 2.31.0
+- 라이선스: Apache-2.0
+- pip-licenses
+- 버전: 3.7.1
+- 라이선스: MIT2.  
+  
+2. **전체 라이선스 정보**
+전체 라이선스 정보는 licenses.json 파일에서 확인할 수 있습니다.
 
 ## 📸 스크린샷: Screenshots
 1. **Index**
