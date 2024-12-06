@@ -39,8 +39,7 @@
    Click the button to explore and use various services  
 
 ## 📄 라이선스: License
-1. **주요 라이선스 요약**  
-   Key License Summary  
+1. **주요 라이선스 요약**: Key License Summary  
 - Django
   - Version: 4.2.5
   - License: BSD
@@ -51,8 +50,7 @@
   - Version: 3.7.1
   - License: MIT2  
   
-2. **전체 라이선스 정보**  
-   Full License Information  
+2. **전체 라이선스 정보**: Full License Information  
 전체 라이선스 정보는 licenses.json 파일에서 확인할 수 있습니다.  
 For complete license details of all dependencies used in this project, please refer to the licenses.json file located in the project root directory.  
 
