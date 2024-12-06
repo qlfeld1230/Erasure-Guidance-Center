@@ -37,18 +37,21 @@
 
 ## 📄 라이선스: License
 1. **주요 라이선스 요약**  
+   Key License Summary  
 - Django
-  - 버전: 4.2.5
-  - 라이선스: BSD
+  - Version: 4.2.5
+  - License: BSD
 - requests
-  - 버전: 2.31.0
-  - 라이선스: Apache-2.0
+  - Version: 2.31.0
+  - License: Apache-2.0
 - pip-licenses
-  - 버전: 3.7.1
-  - 라이선스: MIT2  
+  - Version: 3.7.1
+  - License: MIT2  
   
 2. **전체 라이선스 정보**  
+   Full License Information  
 전체 라이선스 정보는 licenses.json 파일에서 확인할 수 있습니다.
+For complete license details of all dependencies used in this project, please refer to the licenses.json file located in the project root directory.  
 
 ## 📸 스크린샷: Screenshots
 1. **Index**
